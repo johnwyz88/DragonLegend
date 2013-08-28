@@ -30,7 +30,6 @@ namespace ReceptionScreen
         /// </summary>
         private void InitializeComponent()
         {
-            AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReceptionScreen));
             this.pic_CompanyPicture = new System.Windows.Forms.PictureBox();
