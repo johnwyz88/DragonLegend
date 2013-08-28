@@ -41,55 +41,56 @@ namespace ReceptionScreen
             WaitingList.Hide();
             _nextTicketShow = true;
             lbl_DateTime.Text = time.ToString(format);
-            lbl_CompanyName.Left = screen.Width / 2 - lbl_CompanyName.Width / 2 + screen.Width / 20;
-            lbl_CompanyName.Top = screen.Height / 13 - lbl_CompanyName.Height / 13;
-            pic_CompanyPicture.Left = screen.Width / 20 - pic_CompanyPicture.Width / 20;
-            pic_CompanyPicture.Top = screen.Height / 20 - pic_CompanyPicture.Height / 20;
-            pic_face.Left = screen.Width - pic_face.Width - screen.Width / 60;
-            pic_face.Top = screen.Height / 20 - pic_face.Height / 30;
+            lbl_CompanyName.Left = screen.Width/2 - lbl_CompanyName.Width/2 + screen.Width/20;
+            lbl_CompanyName.Top = screen.Height/13 - lbl_CompanyName.Height/13;
+            pic_CompanyPicture.Left = screen.Width/20 - pic_CompanyPicture.Width/20;
+            pic_CompanyPicture.Top = screen.Height/20 - pic_CompanyPicture.Height/20;
+            pic_face.Left = screen.Width - pic_face.Width - screen.Width/60;
+            pic_face.Top = screen.Height/20 - pic_face.Height/30;
             lbl_TopBreakLine.Left = 0;
-            lbl_TopBreakLine.Top = screen.Height / 20 + pic_CompanyPicture.Height;
-            
-            lbl_NextTicket.Left = screen.Width / 2 - lbl_NextTicket.Width / 2 + screen.Width / 20;
-            lbl_NextTicket.Top = lbl_TopBreakLine.Top + screen.Height / 10;
-            
-            lbl_LabelNextTicket.Left = screen.Width / 7 - lbl_LabelNextTicket.Width / 7;
-            lbl_LabelNextTicket.Top = lbl_NextTicket.Top + lbl_NextTicket.Height - lbl_LabelNextTicket.Height * 2 - screen.Height / 60;
-            
-            lbl_LabelPrintTicket.Left = lbl_LabelNextTicket.Left;
-            lbl_LabelPrintTicket.Top = lbl_LabelNextTicket.Top + lbl_LabelNextTicket.Height + screen.Height / 7;
+            lbl_TopBreakLine.Top = screen.Height/20 + pic_CompanyPicture.Height;
 
-            txb_NOF.Left = lbl_NextTicket.Left + screen.Width / 20;
+            lbl_NextTicket.Left = screen.Width/2 - lbl_NextTicket.Width/2 + screen.Width/20;
+            lbl_NextTicket.Top = lbl_TopBreakLine.Top + screen.Height/10;
+
+            lbl_LabelNextTicket.Left = screen.Width/7 - lbl_LabelNextTicket.Width/7;
+            lbl_LabelNextTicket.Top = lbl_NextTicket.Top + lbl_NextTicket.Height - lbl_LabelNextTicket.Height*2 -
+                                      screen.Height/60;
+
+            lbl_LabelPrintTicket.Left = lbl_LabelNextTicket.Left;
+            lbl_LabelPrintTicket.Top = lbl_LabelNextTicket.Top + lbl_LabelNextTicket.Height + screen.Height/7;
+
+            txb_NOF.Left = lbl_NextTicket.Left + screen.Width/20;
             txb_NOF.Top = lbl_LabelPrintTicket.Top;
 
-            btn_CreateTicket.Left = txb_NOF.Left + txb_NOF.Width + screen.Width / 100;
+            btn_CreateTicket.Left = txb_NOF.Left + txb_NOF.Width + screen.Width/100;
             btn_CreateTicket.Top = txb_NOF.Top;
 
             chk_printEnable.Left = btn_CreateTicket.Left + btn_CreateTicket.Width + screen.Width/100;
-            chk_printEnable.Top = btn_CreateTicket.Top + screen.Height / 300;
+            chk_printEnable.Top = btn_CreateTicket.Top + screen.Height/300;
 
             chk_printEnable.Hide();
 
-            btn_Analysis.Left = screen.Width / 100;
-            btn_Analysis.Top = screen.Height - btn_Analysis.Height * 4 - screen.Height / 100;
-            lbl_LabelPrintedNum.Top = lbl_LabelPrintTicket.Top + screen.Height / 12;
+            btn_Analysis.Left = screen.Width/100;
+            btn_Analysis.Top = screen.Height - btn_Analysis.Height*4 - screen.Height/100;
+            lbl_LabelPrintedNum.Top = lbl_LabelPrintTicket.Top + screen.Height/12;
             lbl_LabelPrintedNum.Left = lbl_LabelPrintTicket.Left;
-            lbl_PrintedNumber.Top = lbl_LabelPrintedNum.Top;        
+            lbl_PrintedNumber.Top = lbl_LabelPrintedNum.Top;
 
             lbl_PrintedNumber.Left = txb_NOF.Left;
-            lbl_BottomBreakLine.Top = lbl_PrintedNumber.Top + lbl_PrintedNumber.Height + screen.Height / 30;
+            lbl_BottomBreakLine.Top = lbl_PrintedNumber.Top + lbl_PrintedNumber.Height + screen.Height/30;
             lbl_ContactInfo.Top = btn_Analysis.Top;
-            lbl_ContactInfo.Left = screen.Width / 2 - lbl_ContactInfo.Width / 2;
-            WaitingList.Height = screen.Height * 2/5;
-            WaitingList.Left = screen.Width - WaitingList.Width - screen.Width / 50;
-            WaitingList.Top = lbl_TopBreakLine.Top + lbl_TopBreakLine.Height + screen.Height / 100;
-            lbl_DateTime.Left = screen.Width - lbl_DateTime.Width - screen.Width / 100;
+            lbl_ContactInfo.Left = screen.Width/2 - lbl_ContactInfo.Width/2;
+            WaitingList.Height = screen.Height*2/5;
+            WaitingList.Left = screen.Width - WaitingList.Width - screen.Width/50;
+            WaitingList.Top = lbl_TopBreakLine.Top + lbl_TopBreakLine.Height + screen.Height/100;
+            lbl_DateTime.Left = screen.Width - lbl_DateTime.Width - screen.Width/100;
             lbl_DateTime.Top = btn_Analysis.Top;
-            lbl_waitingTickets.Top = WaitingList.Top + WaitingList.Height + screen.Height / 100;
-            lbl_waitingTickets.Left = screen.Width - lbl_waitingTickets.Width - screen.Width / 100;
+            lbl_waitingTickets.Top = WaitingList.Top + WaitingList.Height + screen.Height/100;
+            lbl_waitingTickets.Left = screen.Width - lbl_waitingTickets.Width - screen.Width/100;
 
-            lbl_displayTotal.Top = lbl_waitingTickets.Top + lbl_waitingTickets.Height + screen.Height / 100;
-            lbl_displayTotal.Left = screen.Width - lbl_waitingTickets.Width - screen.Width / 100;
+            lbl_displayTotal.Top = lbl_waitingTickets.Top + lbl_waitingTickets.Height + screen.Height/100;
+            lbl_displayTotal.Left = screen.Width - lbl_waitingTickets.Width - screen.Width/100;
             lbl_displayTotal.Hide();
 
             txb_NOF.Focus();
@@ -137,21 +138,24 @@ namespace ReceptionScreen
                     _typeC++;
                 }
 
-                int totalTicketSoldOfDay = TotalTicketSold[0] + TotalTicketSold[1] + TotalTicketSold[2] + TotalTicketSold[3];
+                int totalTicketSoldOfDay = TotalTicketSold[0] + TotalTicketSold[1] + TotalTicketSold[2] +
+                                           TotalTicketSold[3];
                 _printedTicketText = string.Format("{0}{1:D3}-{2}", type, totalTicketSoldOfDay, _nop);
                 lbl_PrintedNumber.Text = _printedTicketText;
 
                 _arrayList.Add(_printedTicketText);
                 WaitingList.Items.Clear();
                 WaitingList.Items.AddRange(_arrayList.ToArray());
-                lbl_waitingTickets.Text = string.Format("| A : {0} | B : {1} | C : {2} |\r\n            -> Total : {3}", _typeA, _typeB, _typeC, _arrayList.ToArray().Length);
+                lbl_waitingTickets.Text = string.Format(
+                    "| A : {0} | B : {1} | C : {2} |\r\n            -> Total : {3}", _typeA, _typeB, _typeC,
+                    _arrayList.ToArray().Length);
 
                 if (chk_printEnable.Checked)
                 {
                     var pd = new PrintDocument();
                     pd.PrintPage += PrintTicket;
                     pd.Print();
-                }              
+                }
             }
             else
                 txb_NOF.BackColor = Color.Red;
@@ -199,7 +203,7 @@ namespace ReceptionScreen
             {
                 lbl_displayTotal.Hide();
             }
-        }      
+        }
 
         private void btn_Analysis_Click(object sender, EventArgs e)
         {
@@ -213,7 +217,13 @@ namespace ReceptionScreen
                 lbl_NextTicket.Text = string.Format(@"=========================================================" + @"
 0am to 2am: " + @"
 Total number of tickets sold: {0}   Total number customers: {1}
-9am to 3pm: " + "\r\nTotal number of tickets sold: {2}   Total number customers: {3}\r\n5pm to 9pm: " + "\r\nTotal number of tickets sold: {4}   Total number customers: {5}\r\n9pm to 12am: " + "\r\nTotal number of tickets sold: {6}   Total number customers: {7}\r\nEntire day: " + "\r\nTotal number of tickets sold: {8}   Total number customers: {9}\r\n=========================================================", TotalTicketSold[0], TotalCutomers[0], TotalTicketSold[1], TotalCutomers[1], TotalTicketSold[2], TotalCutomers[2], TotalTicketSold[3], TotalCutomers[3], entireDayTicket, entireDayCus);
+9am to 3pm: " + "\r\nTotal number of tickets sold: {2}   Total number customers: {3}\r\n5pm to 9pm: " +
+                                                    "\r\nTotal number of tickets sold: {4}   Total number customers: {5}\r\n9pm to 12am: " +
+                                                    "\r\nTotal number of tickets sold: {6}   Total number customers: {7}\r\nEntire day: " +
+                                                    "\r\nTotal number of tickets sold: {8}   Total number customers: {9}\r\n=========================================================",
+                                                    TotalTicketSold[0], TotalCutomers[0], TotalTicketSold[1],
+                                                    TotalCutomers[1], TotalTicketSold[2], TotalCutomers[2],
+                                                    TotalTicketSold[3], TotalCutomers[3], entireDayTicket, entireDayCus);
                 lbl_NextTicket.Font = new Font(lbl_NextTicket.Font.FontFamily.Name, 12);
                 _nextTicketShow = false;
             }
@@ -230,7 +240,8 @@ Total number of tickets sold: {0}   Total number customers: {1}
         {
             if (WaitingList.SelectedItem != null)
             {
-                DialogResult dialogResult = MessageBox.Show(@"Next cutomer is: " + WaitingList.SelectedItem, @"Are you sure?", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show(@"Next cutomer is: " + WaitingList.SelectedItem,
+                                                            @"Are you sure?", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     //do something
@@ -253,7 +264,8 @@ Total number of tickets sold: {0}   Total number customers: {1}
                         _typeC--;
                     }
 
-                    lbl_waitingTickets.Text = string.Format("| A : {0} | B : {1} | C : {2} |\r\nTotal : {3}", _typeA, _typeB, _typeC, _arrayList.ToArray().Length);
+                    lbl_waitingTickets.Text = string.Format("| A : {0} | B : {1} | C : {2} |\r\nTotal : {3}", _typeA,
+                                                            _typeB, _typeC, _arrayList.ToArray().Length);
                 }
                 else if (dialogResult == DialogResult.No)
                 {
@@ -264,7 +276,7 @@ Total number of tickets sold: {0}   Total number customers: {1}
 
         public static void OnProcessExit(object sender, EventArgs e)
         {
-            ExcelDoc.writeDoc();
+            ExcelDoc.WriteDoc();
         }
 
         // The PrintPage event is raised for each page to be printed. 
@@ -298,14 +310,14 @@ Total number of tickets sold: {0}   Total number customers: {1}
             string line;
 
             // Calculate the number of lines per page.
-            var linesPerPage = ev.MarginBounds.Height /
-                                 _printFont.GetHeight(ev.Graphics);
+            var linesPerPage = ev.MarginBounds.Height/
+                               _printFont.GetHeight(ev.Graphics);
 
             // Print each line of the file. 
             while (count < linesPerPage && count2 < stringListArray.Length &&
-               ((line = stringListArray[count2].ToString()) != null))
+                   ((line = stringListArray[count2].ToString()) != null))
             {
-                float yPos = topMargin + (count *
+                float yPos = topMargin + (count*
                                           _printFont.GetHeight(ev.Graphics));
                 var parts = line.Split('-');
                 parts[0] = parts[0].Trim();
@@ -316,7 +328,7 @@ Total number of tickets sold: {0}   Total number customers: {1}
                         line = " " + line;
                 }
                 ev.Graphics.DrawString(line, _printFont, Brushes.Black,
-                   leftMargin, yPos, new StringFormat());
+                                       leftMargin, yPos, new StringFormat());
                 _printFont = new Font("Arial", 8);
                 count++;
                 count2++;
@@ -333,7 +345,7 @@ Total number of tickets sold: {0}   Total number customers: {1}
             lbl_DateTime.Text = time.ToString(format);
             txb_NOF.Focus();
             int hour = time.Hour;
-            
+
             if (hour >= 0 && hour < 9)
             {
                 _timeRange = 0;
@@ -374,7 +386,7 @@ Total number of tickets sold: {0}   Total number customers: {1}
         public static Microsoft.Office.Interop.Excel.Worksheet Worksheet = null;
         public static Microsoft.Office.Interop.Excel.Range WorkSheetRange = null;
         public static bool SheetAlreadyExist = true;
-        
+
 
         public static void ReadDoc()
         {
@@ -383,7 +395,7 @@ Total number of tickets sold: {0}   Total number customers: {1}
             {
                 App = new Microsoft.Office.Interop.Excel.Application {Visible = true};
                 Workbook = App.Workbooks.Open("DragonLegendSalesReport-AutoGen");
-                Worksheet = (Microsoft.Office.Interop.Excel.Worksheet)Workbook.Sheets[1];
+                Worksheet = (Microsoft.Office.Interop.Excel.Worksheet) Workbook.Sheets[1];
 
                 var temp = "blah";
                 const string format = "ddd MMM d, yyyy";
@@ -395,7 +407,7 @@ Total number of tickets sold: {0}   Total number customers: {1}
                 while (temp != time.ToString(format))
                 {
                     var range = Worksheet.Range["B" + i, "M" + i];
-                    var myvalues = (Array)range.Cells.Value;
+                    var myvalues = (Array) range.Cells.Value;
                     strArray = myvalues.OfType<object>().Select(x => x.ToString()).ToArray();
 
                     if (strArray.Length == 0)
@@ -405,11 +417,11 @@ Total number of tickets sold: {0}   Total number customers: {1}
                         break;
                     }
 
-                    temp = strArray[0];                   
+                    temp = strArray[0];
 
                     i++;
                 }
-                   
+
                 if (hasTodayInfo)
                 {
                     ReceptionScreen.TotalTicketSold[0] += Convert.ToInt32(strArray[1]);
@@ -423,7 +435,7 @@ Total number of tickets sold: {0}   Total number customers: {1}
                     ReceptionScreen.TotalCutomers[3] += Convert.ToInt32(strArray[8]);
 
                     if (Convert.ToInt32(strArray[9]) != ReceptionScreen.TotalTicketSold[0] +
-                                                               ReceptionScreen.TotalTicketSold[1] +
+                                                        ReceptionScreen.TotalTicketSold[1] +
                         ReceptionScreen.TotalTicketSold[2] +
                         ReceptionScreen.TotalTicketSold[3])
                     {
@@ -431,7 +443,7 @@ Total number of tickets sold: {0}   Total number customers: {1}
                     }
 
                     if (Convert.ToInt32(strArray[10]) != ReceptionScreen.TotalCutomers[0] +
-                                                                ReceptionScreen.TotalCutomers[1] +
+                                                         ReceptionScreen.TotalCutomers[1] +
                         ReceptionScreen.TotalCutomers[2] +
                         ReceptionScreen.TotalCutomers[3])
                     {
@@ -443,11 +455,11 @@ Total number of tickets sold: {0}   Total number customers: {1}
                 else
                 {
                     App.Quit();
-                    writeDoc();
+                    WriteDoc();
                 }
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 App.Quit();
 
@@ -464,89 +476,89 @@ Total number of tickets sold: {0}   Total number customers: {1}
             Worksheet = (Microsoft.Office.Interop.Excel.Worksheet) Workbook.Sheets[1];
 
             //creates the main header
-            createHeaders(2, 2, "Sales Report", "B2", "M2", 2, "YELLOW", true, 10, "n");
+            CreateHeaders(2, 2, "Sales Report", "B2", "M2", 2, "YELLOW", true, 10, "n");
             //creates subheaders
-            createHeaders(3, 2, "Date", "B3", "C3", 0, "GAINSBORO", true, 10, "");
+            CreateHeaders(3, 2, "Date", "B3", "C3", 0, "GAINSBORO", true, 10, "");
 
-            createHeaders(3, 4, "TIC:0|2", "D3", "D3", 0, "GAINSBORO", true, 10, "");
-            createHeaders(3, 5, "CUS:0|2", "E3", "E3", 0, "GAINSBORO", true, 10, "");
+            CreateHeaders(3, 4, "TIC:0|2", "D3", "D3", 0, "GAINSBORO", true, 10, "");
+            CreateHeaders(3, 5, "CUS:0|2", "E3", "E3", 0, "GAINSBORO", true, 10, "");
 
-            createHeaders(3, 6, "TIC:9|15", "F3", "F3", 0, "GAINSBORO", true, 10, "");
-            createHeaders(3, 7, "CUS:9|15", "G3", "G3", 0, "GAINSBORO", true, 10, "");
+            CreateHeaders(3, 6, "TIC:9|15", "F3", "F3", 0, "GAINSBORO", true, 10, "");
+            CreateHeaders(3, 7, "CUS:9|15", "G3", "G3", 0, "GAINSBORO", true, 10, "");
 
-            createHeaders(3, 8, "TIC:17|21", "H3", "H3", 0, "GAINSBORO", true, 10, "");
-            createHeaders(3, 9, "CUS:17|21", "I3", "I3", 0, "GAINSBORO", true, 10, "");
+            CreateHeaders(3, 8, "TIC:17|21", "H3", "H3", 0, "GAINSBORO", true, 10, "");
+            CreateHeaders(3, 9, "CUS:17|21", "I3", "I3", 0, "GAINSBORO", true, 10, "");
 
-            createHeaders(3, 10, "TIC:21|24", "J3", "J3", 0, "GAINSBORO", true, 10, "");
-            createHeaders(3, 11, "CUS:21|24", "K3", "K3", 0, "GAINSBORO", true, 10, "");
+            CreateHeaders(3, 10, "TIC:21|24", "J3", "J3", 0, "GAINSBORO", true, 10, "");
+            CreateHeaders(3, 11, "CUS:21|24", "K3", "K3", 0, "GAINSBORO", true, 10, "");
 
-            createHeaders(3, 12, "TIC TOTAL", "L3", "L3", 0, "GAINSBORO", true, 10, "");
-            createHeaders(3, 13, "CUS TOTAL", "M3", "M3", 0, "GAINSBORO", true, 10, "");
+            CreateHeaders(3, 12, "TIC TOTAL", "L3", "L3", 0, "GAINSBORO", true, 10, "");
+            CreateHeaders(3, 13, "CUS TOTAL", "M3", "M3", 0, "GAINSBORO", true, 10, "");
 
             //add Data to cells
             const string format = "ddd MMM d, yyyy";
             var time = DateTime.Now;
 
-            createHeaders(4, 2, "", "B4", "C4", 2, "WHITE", false, 10, "n");
-            addData(4, 2, time.ToString(format), "B4", "C4", "");
+            CreateHeaders(4, 2, "", "B4", "C4", 2, "WHITE", false, 10, "n");
+            AddData(4, 2, time.ToString(format), "B4", "C4", "");
 
-            createHeaders(4, 4, "", "D4", "D4", 2, "WHITE", false, 10, "n");
-            addData(4, 4, ReceptionScreen.TotalTicketSold[0].ToString(), "D4", "D4", "#,##0");
+            CreateHeaders(4, 4, "", "D4", "D4", 2, "WHITE", false, 10, "n");
+            AddData(4, 4, ReceptionScreen.TotalTicketSold[0].ToString(), "D4", "D4", "#,##0");
 
-            createHeaders(4, 5, "", "E4", "E4", 2, "WHITE", false, 10, "n");
-            addData(4, 5, ReceptionScreen.TotalCutomers[0].ToString(), "E4", "E4", "#,##0");
+            CreateHeaders(4, 5, "", "E4", "E4", 2, "WHITE", false, 10, "n");
+            AddData(4, 5, ReceptionScreen.TotalCutomers[0].ToString(), "E4", "E4", "#,##0");
 
-            createHeaders(4, 6, "", "F4", "F4", 2, "WHITE", false, 10, "n");
-            addData(4, 6, ReceptionScreen.TotalTicketSold[1].ToString(), "F4", "F4", "#,##0");
+            CreateHeaders(4, 6, "", "F4", "F4", 2, "WHITE", false, 10, "n");
+            AddData(4, 6, ReceptionScreen.TotalTicketSold[1].ToString(), "F4", "F4", "#,##0");
 
-            createHeaders(4, 7, "", "G4", "G4", 2, "WHITE", false, 10, "n");
-            addData(4, 7, ReceptionScreen.TotalCutomers[1].ToString(), "G4", "G4", "#,##0");
+            CreateHeaders(4, 7, "", "G4", "G4", 2, "WHITE", false, 10, "n");
+            AddData(4, 7, ReceptionScreen.TotalCutomers[1].ToString(), "G4", "G4", "#,##0");
 
-            createHeaders(4, 8, "", "H4", "H4", 2, "WHITE", false, 10, "n");
-            addData(4, 8, ReceptionScreen.TotalTicketSold[2].ToString(), "H4", "H4", "#,##0");
+            CreateHeaders(4, 8, "", "H4", "H4", 2, "WHITE", false, 10, "n");
+            AddData(4, 8, ReceptionScreen.TotalTicketSold[2].ToString(), "H4", "H4", "#,##0");
 
-            createHeaders(4, 9, "", "I4", "I4", 2, "WHITE", false, 10, "n");
-            addData(4, 9, ReceptionScreen.TotalCutomers[2].ToString(), "I4", "I4", "#,##0");
+            CreateHeaders(4, 9, "", "I4", "I4", 2, "WHITE", false, 10, "n");
+            AddData(4, 9, ReceptionScreen.TotalCutomers[2].ToString(), "I4", "I4", "#,##0");
 
-            createHeaders(4, 10, "", "J4", "J4", 2, "WHITE", false, 10, "n");
-            addData(4, 10, ReceptionScreen.TotalTicketSold[3].ToString(), "J4", "J4", "#,##0");
+            CreateHeaders(4, 10, "", "J4", "J4", 2, "WHITE", false, 10, "n");
+            AddData(4, 10, ReceptionScreen.TotalTicketSold[3].ToString(), "J4", "J4", "#,##0");
 
-            createHeaders(4, 11, "", "K4", "K4", 2, "WHITE", false, 10, "n");
-            addData(4, 11, ReceptionScreen.TotalCutomers[3].ToString(), "K4", "K4", "#,##0");
+            CreateHeaders(4, 11, "", "K4", "K4", 2, "WHITE", false, 10, "n");
+            AddData(4, 11, ReceptionScreen.TotalCutomers[3].ToString(), "K4", "K4", "#,##0");
 
-            createHeaders(4, 12, "", "L4", "L4", 2, "WHITE", false, 10, "n");
-            var total = ReceptionScreen.TotalTicketSold[0] + ReceptionScreen.TotalTicketSold[1] + ReceptionScreen.TotalTicketSold[2] + ReceptionScreen.TotalTicketSold[3];
-            addData(4, 12, total.ToString(), "L4", "L4", "#,##0");
+            CreateHeaders(4, 12, "", "L4", "L4", 2, "WHITE", false, 10, "n");
+            var total = ReceptionScreen.TotalTicketSold[0] + ReceptionScreen.TotalTicketSold[1] +
+                        ReceptionScreen.TotalTicketSold[2] + ReceptionScreen.TotalTicketSold[3];
+            AddData(4, 12, total.ToString(), "L4", "L4", "#,##0");
 
-            createHeaders(4, 13, "", "M4", "M4", 2, "WHITE", false, 10, "n");
-            total = ReceptionScreen.TotalCutomers[0] + ReceptionScreen.TotalCutomers[1] + ReceptionScreen.TotalCutomers[2] + ReceptionScreen.TotalCutomers[3];
-            addData(4, 13, total.ToString(), "M4", "M4", "#,##0");
+            CreateHeaders(4, 13, "", "M4", "M4", 2, "WHITE", false, 10, "n");
+            total = ReceptionScreen.TotalCutomers[0] + ReceptionScreen.TotalCutomers[1] +
+                    ReceptionScreen.TotalCutomers[2] + ReceptionScreen.TotalCutomers[3];
+            AddData(4, 13, total.ToString(), "M4", "M4", "#,##0");
 
-            ExcelDoc.App.DisplayAlerts = false;
-            ExcelDoc.Workbook.SaveAs("DragonLegendSalesReport-AutoGen");
-            ExcelDoc.App.Quit();
+            App.DisplayAlerts = false;
+            Workbook.SaveAs("DragonLegendSalesReport-AutoGen");
+            App.Quit();
         }
 
-        public static void writeDoc()
+        public static void WriteDoc()
         {
-            int activeWriteRowNum = 4;
-            App = new Microsoft.Office.Interop.Excel.Application();
-            App.Visible = true;
+            var activeWriteRowNum = 4;
+            App = new Microsoft.Office.Interop.Excel.Application {Visible = true};
             Workbook = App.Workbooks.Open("DragonLegendSalesReport-AutoGen");
-            Worksheet = (Microsoft.Office.Interop.Excel.Worksheet)Workbook.Sheets[1];
+            Worksheet = (Microsoft.Office.Interop.Excel.Worksheet) Workbook.Sheets[1];
 
-            string temp = "blah";
-            string format = "ddd MMM d, yyyy";
-            DateTime time = DateTime.Now;
+            var temp = "blah";
+            const string format = "ddd MMM d, yyyy";
+            var time = DateTime.Now;
 
-            string[] strArray = new string[13];
-            bool hasTodayInfo = true;
+            var hasTodayInfo = true;
 
             while (temp != time.ToString(format))
             {
-                Microsoft.Office.Interop.Excel.Range range = Worksheet.get_Range("B" + activeWriteRowNum.ToString(), "M" + activeWriteRowNum.ToString());
-                System.Array myvalues = (System.Array)range.Cells.Value;
-                strArray = myvalues.OfType<object>().Select(x => x.ToString()).ToArray();
+                var range = Worksheet.Range["B" + activeWriteRowNum, "M" + activeWriteRowNum];
+                var myvalues = (Array) range.Cells.Value;
+                var strArray = myvalues.OfType<object>().Select(x => x.ToString()).ToArray();
 
                 if (strArray.Length == 0)
                 {
@@ -561,118 +573,130 @@ Total number of tickets sold: {0}   Total number customers: {1}
             if (hasTodayInfo)
                 activeWriteRowNum--;
             //creates the main header
-            createHeaders(2, 2, "Sales Report", "B2", "M2", 2, "YELLOW", true, 10, "n");
+            CreateHeaders(2, 2, "Sales Report", "B2", "M2", 2, "YELLOW", true, 10, "n");
             //creates subheaders
-            createHeaders(3, 2, "Date", "B3", "C3", 0, "GAINSBORO", true, 10, "");
+            CreateHeaders(3, 2, "Date", "B3", "C3", 0, "GAINSBORO", true, 10, "");
 
-            createHeaders(3, 4, "TIC:0|2", "D3", "D3", 0, "GAINSBORO", true, 10, "");
-            createHeaders(3, 5, "CUS:0|2", "E3", "E3", 0, "GAINSBORO", true, 10, "");
+            CreateHeaders(3, 4, "TIC:0|2", "D3", "D3", 0, "GAINSBORO", true, 10, "");
+            CreateHeaders(3, 5, "CUS:0|2", "E3", "E3", 0, "GAINSBORO", true, 10, "");
 
-            createHeaders(3, 6, "TIC:9|15", "F3", "F3", 0, "GAINSBORO", true, 10, "");
-            createHeaders(3, 7, "CUS:9|15", "G3", "G3", 0, "GAINSBORO", true, 10, "");
+            CreateHeaders(3, 6, "TIC:9|15", "F3", "F3", 0, "GAINSBORO", true, 10, "");
+            CreateHeaders(3, 7, "CUS:9|15", "G3", "G3", 0, "GAINSBORO", true, 10, "");
 
-            createHeaders(3, 8, "TIC:17|21", "H3", "H3", 0, "GAINSBORO", true, 10, "");
-            createHeaders(3, 9, "CUS:17|21", "I3", "I3", 0, "GAINSBORO", true, 10, "");
+            CreateHeaders(3, 8, "TIC:17|21", "H3", "H3", 0, "GAINSBORO", true, 10, "");
+            CreateHeaders(3, 9, "CUS:17|21", "I3", "I3", 0, "GAINSBORO", true, 10, "");
 
-            createHeaders(3, 10, "TIC:21|24", "J3", "J3", 0, "GAINSBORO", true, 10, "");
-            createHeaders(3, 11, "CUS:21|24", "K3", "K3", 0, "GAINSBORO", true, 10, "");
+            CreateHeaders(3, 10, "TIC:21|24", "J3", "J3", 0, "GAINSBORO", true, 10, "");
+            CreateHeaders(3, 11, "CUS:21|24", "K3", "K3", 0, "GAINSBORO", true, 10, "");
 
-            createHeaders(3, 12, "TIC TOTAL", "L3", "L3", 0, "GAINSBORO", true, 10, "");
-            createHeaders(3, 13, "CUS TOTAL", "M3", "M3", 0, "GAINSBORO", true, 10, "");
+            CreateHeaders(3, 12, "TIC TOTAL", "L3", "L3", 0, "GAINSBORO", true, 10, "");
+            CreateHeaders(3, 13, "CUS TOTAL", "M3", "M3", 0, "GAINSBORO", true, 10, "");
 
             //add Data to cells
 
-            createHeaders(activeWriteRowNum, 2, "", "B" + activeWriteRowNum, "C" + activeWriteRowNum, 2, "WHITE", false, 10, "n");
-            addData(activeWriteRowNum, 2, time.ToString(format), "B" + activeWriteRowNum, "C" + activeWriteRowNum, "");
+            CreateHeaders(activeWriteRowNum, 2, "", "B" + activeWriteRowNum, "C" + activeWriteRowNum, 2, "WHITE", false,
+                          10, "n");
+            AddData(activeWriteRowNum, 2, time.ToString(format), "B" + activeWriteRowNum, "C" + activeWriteRowNum, "");
 
-            createHeaders(activeWriteRowNum, 4, "", "D" + activeWriteRowNum, "D" + activeWriteRowNum, 2, "WHITE", false, 10, "n");
-            addData(activeWriteRowNum, 4, ReceptionScreen.TotalTicketSold[0].ToString(), "D" + activeWriteRowNum, "D" + activeWriteRowNum, "#,##0");
+            CreateHeaders(activeWriteRowNum, 4, "", "D" + activeWriteRowNum, "D" + activeWriteRowNum, 2, "WHITE", false,
+                          10, "n");
+            AddData(activeWriteRowNum, 4, ReceptionScreen.TotalTicketSold[0].ToString(), "D" + activeWriteRowNum,
+                    "D" + activeWriteRowNum, "#,##0");
 
-            createHeaders(activeWriteRowNum, 5, "", "E" + activeWriteRowNum, "E" + activeWriteRowNum, 2, "WHITE", false, 10, "n");
-            addData(activeWriteRowNum, 5, ReceptionScreen.TotalCutomers[0].ToString(), "E" + activeWriteRowNum, "E" + activeWriteRowNum, "#,##0");
+            CreateHeaders(activeWriteRowNum, 5, "", "E" + activeWriteRowNum, "E" + activeWriteRowNum, 2, "WHITE", false,
+                          10, "n");
+            AddData(activeWriteRowNum, 5, ReceptionScreen.TotalCutomers[0].ToString(), "E" + activeWriteRowNum,
+                    "E" + activeWriteRowNum, "#,##0");
 
-            createHeaders(activeWriteRowNum, 6, "", "F" + activeWriteRowNum, "F" + activeWriteRowNum, 2, "WHITE", false, 10, "n");
-            addData(activeWriteRowNum, 6, ReceptionScreen.TotalTicketSold[1].ToString(), "F" + activeWriteRowNum, "F" + activeWriteRowNum, "#,##0");
+            CreateHeaders(activeWriteRowNum, 6, "", "F" + activeWriteRowNum, "F" + activeWriteRowNum, 2, "WHITE", false,
+                          10, "n");
+            AddData(activeWriteRowNum, 6, ReceptionScreen.TotalTicketSold[1].ToString(), "F" + activeWriteRowNum,
+                    "F" + activeWriteRowNum, "#,##0");
 
-            createHeaders(activeWriteRowNum, 7, "", "G" + activeWriteRowNum, "G" + activeWriteRowNum, 2, "WHITE", false, 10, "n");
-            addData(activeWriteRowNum, 7, ReceptionScreen.TotalCutomers[1].ToString(), "G" + activeWriteRowNum, "G" + activeWriteRowNum, "#,##0");
+            CreateHeaders(activeWriteRowNum, 7, "", "G" + activeWriteRowNum, "G" + activeWriteRowNum, 2, "WHITE", false,
+                          10, "n");
+            AddData(activeWriteRowNum, 7, ReceptionScreen.TotalCutomers[1].ToString(), "G" + activeWriteRowNum,
+                    "G" + activeWriteRowNum, "#,##0");
 
-            createHeaders(activeWriteRowNum, 8, "", "H" + activeWriteRowNum, "H" + activeWriteRowNum, 2, "WHITE", false, 10, "n");
-            addData(activeWriteRowNum, 8, ReceptionScreen.TotalTicketSold[2].ToString(), "H" + activeWriteRowNum, "H" + activeWriteRowNum, "#,##0");
+            CreateHeaders(activeWriteRowNum, 8, "", "H" + activeWriteRowNum, "H" + activeWriteRowNum, 2, "WHITE", false,
+                          10, "n");
+            AddData(activeWriteRowNum, 8, ReceptionScreen.TotalTicketSold[2].ToString(), "H" + activeWriteRowNum,
+                    "H" + activeWriteRowNum, "#,##0");
 
-            createHeaders(activeWriteRowNum, 9, "", "I" + activeWriteRowNum, "I" + activeWriteRowNum, 2, "WHITE", false, 10, "n");
-            addData(activeWriteRowNum, 9, ReceptionScreen.TotalCutomers[2].ToString(), "I" + activeWriteRowNum, "I" + activeWriteRowNum, "#,##0");
+            CreateHeaders(activeWriteRowNum, 9, "", "I" + activeWriteRowNum, "I" + activeWriteRowNum, 2, "WHITE", false,
+                          10, "n");
+            AddData(activeWriteRowNum, 9, ReceptionScreen.TotalCutomers[2].ToString(), "I" + activeWriteRowNum,
+                    "I" + activeWriteRowNum, "#,##0");
 
-            createHeaders(activeWriteRowNum, 10, "", "J" + activeWriteRowNum, "J" + activeWriteRowNum, 2, "WHITE", false, 10, "n");
-            addData(activeWriteRowNum, 10, ReceptionScreen.TotalTicketSold[3].ToString(), "J" + activeWriteRowNum, "J" + activeWriteRowNum, "#,##0");
+            CreateHeaders(activeWriteRowNum, 10, "", "J" + activeWriteRowNum, "J" + activeWriteRowNum, 2, "WHITE", false,
+                          10, "n");
+            AddData(activeWriteRowNum, 10, ReceptionScreen.TotalTicketSold[3].ToString(), "J" + activeWriteRowNum,
+                    "J" + activeWriteRowNum, "#,##0");
 
-            createHeaders(activeWriteRowNum, 11, "", "K" + activeWriteRowNum, "K" + activeWriteRowNum, 2, "WHITE", false, 10, "n");
-            addData(activeWriteRowNum, 11, ReceptionScreen.TotalCutomers[3].ToString(), "K" + activeWriteRowNum, "K" + activeWriteRowNum, "#,##0");
+            CreateHeaders(activeWriteRowNum, 11, "", "K" + activeWriteRowNum, "K" + activeWriteRowNum, 2, "WHITE", false,
+                          10, "n");
+            AddData(activeWriteRowNum, 11, ReceptionScreen.TotalCutomers[3].ToString(), "K" + activeWriteRowNum,
+                    "K" + activeWriteRowNum, "#,##0");
 
-            createHeaders(activeWriteRowNum, 12, "", "L" + activeWriteRowNum, "L" + activeWriteRowNum, 2, "WHITE", false, 10, "n");
-            var total = ReceptionScreen.TotalTicketSold[0] + ReceptionScreen.TotalTicketSold[1] + ReceptionScreen.TotalTicketSold[2] + ReceptionScreen.TotalTicketSold[3];
-            addData(activeWriteRowNum, 12, total.ToString(), "L" + activeWriteRowNum, "L" + activeWriteRowNum, "#,##0");
+            CreateHeaders(activeWriteRowNum, 12, "", "L" + activeWriteRowNum, "L" + activeWriteRowNum, 2, "WHITE", false,
+                          10, "n");
+            var total = ReceptionScreen.TotalTicketSold[0] + ReceptionScreen.TotalTicketSold[1] +
+                        ReceptionScreen.TotalTicketSold[2] + ReceptionScreen.TotalTicketSold[3];
+            AddData(activeWriteRowNum, 12, total.ToString(), "L" + activeWriteRowNum, "L" + activeWriteRowNum, "#,##0");
 
-            createHeaders(activeWriteRowNum, 13, "", "M" + activeWriteRowNum, "M" + activeWriteRowNum, 2, "WHITE", false, 10, "n");
-            total = ReceptionScreen.TotalCutomers[0] + ReceptionScreen.TotalCutomers[1] + ReceptionScreen.TotalCutomers[2] + ReceptionScreen.TotalCutomers[3];
-            addData(activeWriteRowNum, 13, total.ToString(), "M" + activeWriteRowNum, "M" + activeWriteRowNum, "#,##0");
+            CreateHeaders(activeWriteRowNum, 13, "", "M" + activeWriteRowNum, "M" + activeWriteRowNum, 2, "WHITE", false,
+                          10, "n");
+            total = ReceptionScreen.TotalCutomers[0] + ReceptionScreen.TotalCutomers[1] +
+                    ReceptionScreen.TotalCutomers[2] + ReceptionScreen.TotalCutomers[3];
+            AddData(activeWriteRowNum, 13, total.ToString(), "M" + activeWriteRowNum, "M" + activeWriteRowNum, "#,##0");
 
-            ExcelDoc.App.DisplayAlerts = false;
-            ExcelDoc.Workbook.SaveAs("DragonLegendSalesReport-AutoGen");
-            ExcelDoc.App.Quit();
+            App.DisplayAlerts = false;
+            Workbook.SaveAs("DragonLegendSalesReport-AutoGen");
+            App.Quit();
         }
 
-        public static void createHeaders(int row, int col, string htext, string cell1,
-        string cell2, int mergeColumns, string b, bool font, int size, string
-        fcolor)
+        public static void CreateHeaders(int row, int col, string htext, string cell1,
+                                         string cell2, int mergeColumns, string b, bool font, int size, string
+                                                                                                            fcolor)
         {
             Worksheet.Cells[row, col] = htext;
-            WorkSheetRange = Worksheet.get_Range(cell1, cell2);
+            WorkSheetRange = Worksheet.Range[cell1, cell2];
             WorkSheetRange.Merge(mergeColumns);
             switch (b)
             {
                 case "YELLOW":
-                    WorkSheetRange.Interior.Color = System.Drawing.Color.Yellow.ToArgb();
+                    WorkSheetRange.Interior.Color = Color.Yellow.ToArgb();
                     break;
                 case "GRAY":
-                    WorkSheetRange.Interior.Color = System.Drawing.Color.Gray.ToArgb();
+                    WorkSheetRange.Interior.Color = Color.Gray.ToArgb();
                     break;
                 case "GAINSBORO":
                     WorkSheetRange.Interior.Color =
-            System.Drawing.Color.Gainsboro.ToArgb();
+                        Color.Gainsboro.ToArgb();
                     break;
                 case "Turquoise":
                     WorkSheetRange.Interior.Color =
-            System.Drawing.Color.Turquoise.ToArgb();
+                        Color.Turquoise.ToArgb();
                     break;
                 case "PeachPuff":
                     WorkSheetRange.Interior.Color =
-            System.Drawing.Color.PeachPuff.ToArgb();
+                        Color.PeachPuff.ToArgb();
                     break;
-                default:
-                    //  workSheet_range.Interior.Color = System.Drawing.Color..ToArgb();
-                    break;
+
             }
 
-            WorkSheetRange.Borders.Color = System.Drawing.Color.Black.ToArgb();
+            WorkSheetRange.Borders.Color = Color.Black.ToArgb();
             WorkSheetRange.Font.Bold = font;
             WorkSheetRange.ColumnWidth = size;
-            if (fcolor.Equals(""))
-            {
-                WorkSheetRange.Font.Color = System.Drawing.Color.White.ToArgb();
-            }
-            else
-            {
-                WorkSheetRange.Font.Color = System.Drawing.Color.Black.ToArgb();
-            }
+            WorkSheetRange.Font.Color = fcolor.Equals("") ? Color.White.ToArgb() : Color.Black.ToArgb();
         }
 
-        public static void addData(int row, int col, string data,
-            string cell1, string cell2, string format)
+        public static void AddData(int row, int col, string data,
+                                   string cell1, string cell2, string format)
         {
             Worksheet.Cells[row, col] = data;
-            WorkSheetRange = Worksheet.get_Range(cell1, cell2);
-            WorkSheetRange.Borders.Color = System.Drawing.Color.Black.ToArgb();
+            WorkSheetRange = Worksheet.Range[cell1, cell2];
+            WorkSheetRange.Borders.Color = Color.Black.ToArgb();
             WorkSheetRange.NumberFormat = format;
         }
     }
