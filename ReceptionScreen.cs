@@ -42,7 +42,7 @@ namespace ReceptionScreen
 
         private void ReceptionScreen_Load(object sender, EventArgs e)
         {
-            //UI element positions
+            //UI element anchoring
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit); 
             Rectangle screen = Screen.PrimaryScreen.Bounds;
             DateTime time = DateTime.Now;
@@ -55,34 +55,54 @@ namespace ReceptionScreen
             lbl_CompanyName.Top = screen.Height / 13 - lbl_CompanyName.Height / 13;
             pic_CompanyPicture.Left = screen.Width / 20 - pic_CompanyPicture.Width / 20;
             pic_CompanyPicture.Top = screen.Height / 20 - pic_CompanyPicture.Height / 20;
+            pic_face.Left = screen.Width - pic_face.Width - screen.Width / 60;
+            pic_face.Top = screen.Height / 20 - pic_face.Height / 30;
             lbl_TopBreakLine.Left = 0;
             lbl_TopBreakLine.Top = screen.Height / 20 + pic_CompanyPicture.Height;
-            lbl_LabelNextTicket.Left = screen.Width / 7 - lbl_LabelNextTicket.Width / 7;
-            lbl_LabelNextTicket.Top = lbl_NextTicket.Top + lbl_NextTicket.Height - lbl_LabelNextTicket.Height * 2;
+            
             lbl_NextTicket.Left = screen.Width / 2 - lbl_NextTicket.Width / 2 + screen.Width / 20;
-            lbl_NextTicket.Top = lbl_TopBreakLine.Top + lbl_TopBreakLine.Height / 2;
+            lbl_NextTicket.Top = lbl_TopBreakLine.Top + screen.Height / 10;
+            
+            lbl_LabelNextTicket.Left = screen.Width / 7 - lbl_LabelNextTicket.Width / 7;
+            lbl_LabelNextTicket.Top = lbl_NextTicket.Top + lbl_NextTicket.Height - lbl_LabelNextTicket.Height * 2 - screen.Height / 60;
+            
             lbl_LabelPrintTicket.Left = lbl_LabelNextTicket.Left;
-            btn_CreateTicket.Left = lbl_NextTicket.Left + txb_NOF.Width + screen.Width / 17;   
-            btn_Reset.Left = screen.Width / 100;
-            btn_Reset.Top = screen.Height - btn_Reset.Height * 4 - screen.Height / 100;
+            lbl_LabelPrintTicket.Top = lbl_LabelNextTicket.Top + lbl_LabelNextTicket.Height + screen.Height / 7;
+
+            txb_NOF.Left = lbl_NextTicket.Left + screen.Width / 20;
+            txb_NOF.Top = lbl_LabelPrintTicket.Top;
+
+            btn_CreateTicket.Left = txb_NOF.Left + txb_NOF.Width + screen.Width / 100;
+            btn_CreateTicket.Top = txb_NOF.Top;
+
+            chk_printEnable.Left = btn_CreateTicket.Left + btn_CreateTicket.Width + screen.Width/100;
+            chk_printEnable.Top = btn_CreateTicket.Top + screen.Height / 300;
+
+            chk_printEnable.Hide();
+
+            btn_Analysis.Left = screen.Width / 100;
+            btn_Analysis.Top = screen.Height - btn_Analysis.Height * 4 - screen.Height / 100;
             lbl_LabelPrintedNum.Top = lbl_LabelPrintTicket.Top + screen.Height / 12;
             lbl_LabelPrintedNum.Left = lbl_LabelPrintTicket.Left;
-            lbl_PrintedNumber.Top = lbl_LabelPrintedNum.Top;
-            txb_NOF.Left = lbl_NextTicket.Left + screen.Width / 20;
+            lbl_PrintedNumber.Top = lbl_LabelPrintedNum.Top;        
+
             lbl_PrintedNumber.Left = txb_NOF.Left;
             lbl_BottomBreakLine.Top = lbl_PrintedNumber.Top + lbl_PrintedNumber.Height + screen.Height / 30;
-            lbl_ContactInfo.Top = btn_Reset.Top;
+            lbl_ContactInfo.Top = btn_Analysis.Top;
             lbl_ContactInfo.Left = screen.Width / 2 - lbl_ContactInfo.Width / 2;
+            WaitingList.Height = screen.Height * 2/5;
             WaitingList.Left = screen.Width - WaitingList.Width - screen.Width / 50;
             WaitingList.Top = lbl_TopBreakLine.Top + lbl_TopBreakLine.Height + screen.Height / 100;
             lbl_DateTime.Left = screen.Width - lbl_DateTime.Width - screen.Width / 100;
-            lbl_DateTime.Top = btn_Reset.Top;
-            btn_Analysis.Top = btn_Reset.Top;
-            btn_Analysis.Left = btn_Reset.Left + btn_Reset.Width + screen.Width / 100;
+            lbl_DateTime.Top = btn_Analysis.Top;
             lbl_waitingTickets.Top = WaitingList.Top + WaitingList.Height + screen.Height / 100;
             lbl_waitingTickets.Left = screen.Width - lbl_waitingTickets.Width - screen.Width / 100;
+
+            lbl_displayTotal.Top = lbl_waitingTickets.Top + lbl_waitingTickets.Height + screen.Height / 100;
+            lbl_displayTotal.Left = screen.Width - lbl_waitingTickets.Width - screen.Width / 100;
+            lbl_displayTotal.Hide();
+
             txb_NOF.Focus();
-            btn_Reset.Visible = false;
             btn_Analysis.Visible = false;
             ExcelDoc.readDoc();
         }
@@ -143,10 +163,13 @@ namespace ReceptionScreen
                 WaitingList.Items.AddRange(arrayList.ToArray());
                 lbl_waitingTickets.Text = string.Format("| A : {0} | B : {1} | C : {2} |\r\n            -> Total : {3}", typeA, typeB, typeC, arrayList.ToArray().Length.ToString());
 
-                PrintDocument pd = new PrintDocument();
-                pd.PrintPage += new PrintPageEventHandler
-                   (this.PrintTicket);
-                pd.Print();
+                if (chk_printEnable.Checked)
+                {
+                    PrintDocument pd = new PrintDocument();
+                    pd.PrintPage += new PrintPageEventHandler
+                       (this.PrintTicket);
+                    pd.Print();
+                }              
             }
             else
                 txb_NOF.BackColor = Color.Red;
@@ -156,14 +179,6 @@ namespace ReceptionScreen
 
         private void ReceptionScreen_MouseMove(object sender, MouseEventArgs e)
         {
-            if (btn_Reset.Bounds.Contains(e.Location) && !btn_Reset.Visible)
-            {
-                btn_Reset.Show();
-            }
-            else
-            {
-                btn_Reset.Hide();
-            }
             if (btn_Analysis.Bounds.Contains(e.Location) && !btn_Analysis.Visible)
             {
                 btn_Analysis.Show();
@@ -180,12 +195,29 @@ namespace ReceptionScreen
             {
                 WaitingList.Hide();
             }
-        }
 
-        private void btn_Reset_Click(object sender, EventArgs e)
-        {
-            Application.Restart();
-        }       
+            if (chk_printEnable.Bounds.Contains(e.Location) && !chk_printEnable.Visible)
+            {
+                chk_printEnable.Show();
+            }
+            else
+            {
+                chk_printEnable.Hide();
+            }
+
+            var totalT = totalTicketSold[0] + totalTicketSold[1] + totalTicketSold[2] + totalTicketSold[3];
+            var totalC = totalCutomers[0] + totalCutomers[1] + totalCutomers[2] + totalCutomers[3];
+
+            if (lbl_displayTotal.Bounds.Contains(e.Location) && !lbl_displayTotal.Visible)
+            {
+                lbl_displayTotal.Text = string.Format("Total tickets: {0}\r\nTotal customers: {1}", totalT, totalC);
+                lbl_displayTotal.Show();
+            }
+            else
+            {
+                lbl_displayTotal.Hide();
+            }
+        }      
 
         private void btn_Analysis_Click(object sender, EventArgs e)
         {
@@ -265,10 +297,6 @@ namespace ReceptionScreen
 
         private static void OnProcessExit(object sender, EventArgs e)
         {
-            ExcelDoc.app = new Microsoft.Office.Interop.Excel.Application();
-            ExcelDoc.app.Visible = true;
-            ExcelDoc.workbook = ExcelDoc.app.Workbooks.Open("DragonLegendSalesReport-AutoGen");
-            ExcelDoc.worksheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelDoc.workbook.Sheets[1];
             ExcelDoc.writeDoc();
         }
 
@@ -361,6 +389,8 @@ namespace ReceptionScreen
             {
                 //Store Data
 
+                //Read/Reset Data
+
                 //Reset tickets
                 totalTicketSold[0] = 0;
                 totalTicketSold[1] = 0;
@@ -385,9 +415,11 @@ namespace ReceptionScreen
         public static Microsoft.Office.Interop.Excel.Worksheet worksheet = null;
         public static Microsoft.Office.Interop.Excel.Range workSheet_range = null;
         public static bool sheetAlreadyExist = true;
+        
 
         public static void readDoc()
         {
+            int activeWriteRowNum = 4;
             try
             {
                 app = new Microsoft.Office.Interop.Excel.Application();
@@ -398,48 +430,73 @@ namespace ReceptionScreen
                 string temp = "blah";
                 string format = "ddd MMM d, yyyy";
                 DateTime time = DateTime.Now;
-                int i = 4;
+                
                 string[] strArray = new string[13];
+                bool hasTodayInfo = true;
 
                 while (temp != time.ToString(format))
                 {
-                    Microsoft.Office.Interop.Excel.Range range = worksheet.get_Range("B" + i.ToString(), "M" + i.ToString());
+                    Microsoft.Office.Interop.Excel.Range range = worksheet.get_Range("B" + activeWriteRowNum.ToString(), "M" + activeWriteRowNum.ToString());
                     System.Array myvalues = (System.Array)range.Cells.Value;
                     strArray = myvalues.OfType<object>().Select(x => x.ToString()).ToArray();
 
-                    temp = strArray[0];
-                    i++;
+                    if (strArray.Length == 0)
+                    {
+                        //Excel doesn't have today's info yet
+                        hasTodayInfo = false;
+                        break;
+                    }
+
+                    temp = strArray[0];                   
+
+                    activeWriteRowNum++;
                 }
-
-                ReceptionScreen.totalTicketSold[0] += System.Convert.ToInt32(strArray[1]);
-                ReceptionScreen.totalTicketSold[1] += System.Convert.ToInt32(strArray[3]);
-                ReceptionScreen.totalTicketSold[2] += System.Convert.ToInt32(strArray[5]);
-                ReceptionScreen.totalTicketSold[3] += System.Convert.ToInt32(strArray[7]);
-
-                ReceptionScreen.totalCutomers[0] += System.Convert.ToInt32(strArray[2]);
-                ReceptionScreen.totalCutomers[1] += System.Convert.ToInt32(strArray[4]);
-                ReceptionScreen.totalCutomers[2] += System.Convert.ToInt32(strArray[6]);
-                ReceptionScreen.totalCutomers[3] += System.Convert.ToInt32(strArray[8]);
-
-                if (System.Convert.ToInt32(strArray[9]) != ReceptionScreen.totalTicketSold[0] +
-                    ReceptionScreen.totalTicketSold[1] + ReceptionScreen.totalTicketSold[2] +
-                    ReceptionScreen.totalTicketSold[3])
+                   
+                if (hasTodayInfo)
                 {
-                    throw new InvalidDataException();
-                }
+                    activeWriteRowNum--;
+                    ReceptionScreen.totalTicketSold[0] += System.Convert.ToInt32(strArray[1]);
+                    ReceptionScreen.totalTicketSold[1] += System.Convert.ToInt32(strArray[3]);
+                    ReceptionScreen.totalTicketSold[2] += System.Convert.ToInt32(strArray[5]);
+                    ReceptionScreen.totalTicketSold[3] += System.Convert.ToInt32(strArray[7]);
 
-                if (System.Convert.ToInt32(strArray[10]) != ReceptionScreen.totalCutomers[0] +
-                        ReceptionScreen.totalCutomers[1] + ReceptionScreen.totalCutomers[2] +
+                    ReceptionScreen.totalCutomers[0] += System.Convert.ToInt32(strArray[2]);
+                    ReceptionScreen.totalCutomers[1] += System.Convert.ToInt32(strArray[4]);
+                    ReceptionScreen.totalCutomers[2] += System.Convert.ToInt32(strArray[6]);
+                    ReceptionScreen.totalCutomers[3] += System.Convert.ToInt32(strArray[8]);
+
+                    if (System.Convert.ToInt32(strArray[9]) != ReceptionScreen.totalTicketSold[0] +
+                                                               ReceptionScreen.totalTicketSold[1] +
+                        ReceptionScreen.totalTicketSold[2] +
+                        ReceptionScreen.totalTicketSold[3])
+                    {
+                        throw new InvalidDataException();
+                    }
+
+                    if (System.Convert.ToInt32(strArray[10]) != ReceptionScreen.totalCutomers[0] +
+                                                                ReceptionScreen.totalCutomers[1] +
+                        ReceptionScreen.totalCutomers[2] +
                         ReceptionScreen.totalCutomers[3])
+                    {
+                        throw new InvalidDataException();
+                    }
+
+                    ExcelDoc.app.Quit();
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(ExcelDoc.app);
+                    ExcelDoc.app = null;
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                }
+                else
                 {
-                    throw new InvalidDataException();
+                    ExcelDoc.app.Quit();
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(ExcelDoc.app);
+                    ExcelDoc.app = null;
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                    writeDoc();
                 }
 
-                ExcelDoc.app.Quit();
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(ExcelDoc.app);
-                ExcelDoc.app = null;
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
             }
             catch (Exception e)
             {
@@ -452,7 +509,6 @@ namespace ReceptionScreen
                 Console.Write("File doesn't exist");
                 sheetAlreadyExist = false;
                 createDoc();
-                writeDoc();
             }
             finally
             {
@@ -461,24 +517,10 @@ namespace ReceptionScreen
 
         public static void createDoc()
         {
-            try
-            {
-                app = new Microsoft.Office.Interop.Excel.Application();
-                app.Visible = true;
-                workbook = app.Workbooks.Add(1);
-                worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Sheets[1];
-            }
-            catch (Exception e)
-            {
-                Console.Write("Error");
-            }
-            finally
-            {
-            }
-        }
-
-        public static void writeDoc()
-        {
+            app = new Microsoft.Office.Interop.Excel.Application();
+            app.Visible = true;
+            workbook = app.Workbooks.Add(1);
+            worksheet = (Microsoft.Office.Interop.Excel.Worksheet) workbook.Sheets[1];
 
             //creates the main header
             createHeaders(2, 2, "Sales Report", "B2", "M2", 2, "YELLOW", true, 10, "n");
@@ -539,8 +581,105 @@ namespace ReceptionScreen
             total = ReceptionScreen.totalCutomers[0] + ReceptionScreen.totalCutomers[1] + ReceptionScreen.totalCutomers[2] + ReceptionScreen.totalCutomers[3];
             addData(4, 13, total.ToString(), "M4", "M4", "#,##0");
 
-            //add end row
-            createHeaders(5, 2, "", "B5", "M5", 2, "GRAY", true, 10, "");
+            ExcelDoc.app.DisplayAlerts = false;
+            ExcelDoc.workbook.SaveAs("DragonLegendSalesReport-AutoGen");
+            ExcelDoc.app.Quit();
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(ExcelDoc.app);
+            ExcelDoc.app = null;
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+        }
+
+        public static void writeDoc()
+        {
+            int activeWriteRowNum = 4;
+            app = new Microsoft.Office.Interop.Excel.Application();
+            app.Visible = true;
+            workbook = app.Workbooks.Open("DragonLegendSalesReport-AutoGen");
+            worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Sheets[1];
+
+            string temp = "blah";
+            string format = "ddd MMM d, yyyy";
+            DateTime time = DateTime.Now;
+
+            string[] strArray = new string[13];
+            bool hasTodayInfo = true;
+
+            while (temp != time.ToString(format))
+            {
+                Microsoft.Office.Interop.Excel.Range range = worksheet.get_Range("B" + activeWriteRowNum.ToString(), "M" + activeWriteRowNum.ToString());
+                System.Array myvalues = (System.Array)range.Cells.Value;
+                strArray = myvalues.OfType<object>().Select(x => x.ToString()).ToArray();
+
+                if (strArray.Length == 0)
+                {
+                    hasTodayInfo = false;
+                    break;
+                }
+
+                temp = strArray[0];
+
+                activeWriteRowNum++;
+            }
+
+            if (hasTodayInfo)
+                activeWriteRowNum--;
+            //creates the main header
+            createHeaders(2, 2, "Sales Report", "B2", "M2", 2, "YELLOW", true, 10, "n");
+            //creates subheaders
+            createHeaders(3, 2, "Date", "B3", "C3", 0, "GAINSBORO", true, 10, "");
+
+            createHeaders(3, 4, "TIC:0|2", "D3", "D3", 0, "GAINSBORO", true, 10, "");
+            createHeaders(3, 5, "CUS:0|2", "E3", "E3", 0, "GAINSBORO", true, 10, "");
+
+            createHeaders(3, 6, "TIC:9|15", "F3", "F3", 0, "GAINSBORO", true, 10, "");
+            createHeaders(3, 7, "CUS:9|15", "G3", "G3", 0, "GAINSBORO", true, 10, "");
+
+            createHeaders(3, 8, "TIC:17|21", "H3", "H3", 0, "GAINSBORO", true, 10, "");
+            createHeaders(3, 9, "CUS:17|21", "I3", "I3", 0, "GAINSBORO", true, 10, "");
+
+            createHeaders(3, 10, "TIC:21|24", "J3", "J3", 0, "GAINSBORO", true, 10, "");
+            createHeaders(3, 11, "CUS:21|24", "K3", "K3", 0, "GAINSBORO", true, 10, "");
+
+            createHeaders(3, 12, "TIC TOTAL", "L3", "L3", 0, "GAINSBORO", true, 10, "");
+            createHeaders(3, 13, "CUS TOTAL", "M3", "M3", 0, "GAINSBORO", true, 10, "");
+
+            //add Data to cells
+
+            createHeaders(activeWriteRowNum, 2, "", "B" + activeWriteRowNum, "C" + activeWriteRowNum, 2, "WHITE", false, 10, "n");
+            addData(activeWriteRowNum, 2, time.ToString(format), "B" + activeWriteRowNum, "C" + activeWriteRowNum, "");
+
+            createHeaders(activeWriteRowNum, 4, "", "D" + activeWriteRowNum, "D" + activeWriteRowNum, 2, "WHITE", false, 10, "n");
+            addData(activeWriteRowNum, 4, ReceptionScreen.totalTicketSold[0].ToString(), "D" + activeWriteRowNum, "D" + activeWriteRowNum, "#,##0");
+
+            createHeaders(activeWriteRowNum, 5, "", "E" + activeWriteRowNum, "E" + activeWriteRowNum, 2, "WHITE", false, 10, "n");
+            addData(activeWriteRowNum, 5, ReceptionScreen.totalCutomers[0].ToString(), "E" + activeWriteRowNum, "E" + activeWriteRowNum, "#,##0");
+
+            createHeaders(activeWriteRowNum, 6, "", "F" + activeWriteRowNum, "F" + activeWriteRowNum, 2, "WHITE", false, 10, "n");
+            addData(activeWriteRowNum, 6, ReceptionScreen.totalTicketSold[1].ToString(), "F" + activeWriteRowNum, "F" + activeWriteRowNum, "#,##0");
+
+            createHeaders(activeWriteRowNum, 7, "", "G" + activeWriteRowNum, "G" + activeWriteRowNum, 2, "WHITE", false, 10, "n");
+            addData(activeWriteRowNum, 7, ReceptionScreen.totalCutomers[1].ToString(), "G" + activeWriteRowNum, "G" + activeWriteRowNum, "#,##0");
+
+            createHeaders(activeWriteRowNum, 8, "", "H" + activeWriteRowNum, "H" + activeWriteRowNum, 2, "WHITE", false, 10, "n");
+            addData(activeWriteRowNum, 8, ReceptionScreen.totalTicketSold[2].ToString(), "H" + activeWriteRowNum, "H" + activeWriteRowNum, "#,##0");
+
+            createHeaders(activeWriteRowNum, 9, "", "I" + activeWriteRowNum, "I" + activeWriteRowNum, 2, "WHITE", false, 10, "n");
+            addData(activeWriteRowNum, 9, ReceptionScreen.totalCutomers[2].ToString(), "I" + activeWriteRowNum, "I" + activeWriteRowNum, "#,##0");
+
+            createHeaders(activeWriteRowNum, 10, "", "J" + activeWriteRowNum, "J" + activeWriteRowNum, 2, "WHITE", false, 10, "n");
+            addData(activeWriteRowNum, 10, ReceptionScreen.totalTicketSold[3].ToString(), "J" + activeWriteRowNum, "J" + activeWriteRowNum, "#,##0");
+
+            createHeaders(activeWriteRowNum, 11, "", "K" + activeWriteRowNum, "K" + activeWriteRowNum, 2, "WHITE", false, 10, "n");
+            addData(activeWriteRowNum, 11, ReceptionScreen.totalCutomers[3].ToString(), "K" + activeWriteRowNum, "K" + activeWriteRowNum, "#,##0");
+
+            createHeaders(activeWriteRowNum, 12, "", "L" + activeWriteRowNum, "L" + activeWriteRowNum, 2, "WHITE", false, 10, "n");
+            var total = ReceptionScreen.totalTicketSold[0] + ReceptionScreen.totalTicketSold[1] + ReceptionScreen.totalTicketSold[2] + ReceptionScreen.totalTicketSold[3];
+            addData(activeWriteRowNum, 12, total.ToString(), "L" + activeWriteRowNum, "L" + activeWriteRowNum, "#,##0");
+
+            createHeaders(activeWriteRowNum, 13, "", "M" + activeWriteRowNum, "M" + activeWriteRowNum, 2, "WHITE", false, 10, "n");
+            total = ReceptionScreen.totalCutomers[0] + ReceptionScreen.totalCutomers[1] + ReceptionScreen.totalCutomers[2] + ReceptionScreen.totalCutomers[3];
+            addData(activeWriteRowNum, 13, total.ToString(), "M" + activeWriteRowNum, "M" + activeWriteRowNum, "#,##0");
 
             ExcelDoc.app.DisplayAlerts = false;
             ExcelDoc.workbook.SaveAs("DragonLegendSalesReport-AutoGen");

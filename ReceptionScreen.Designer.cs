@@ -40,17 +40,18 @@
             this.lbl_DateTime = new System.Windows.Forms.Label();
             this.lbl_LabelPrintedNum = new System.Windows.Forms.Label();
             this.lbl_TopBreakLine = new System.Windows.Forms.Label();
-            this.btn_Reset = new System.Windows.Forms.Button();
             this.lbl_BottomBreakLine = new System.Windows.Forms.Label();
             this.WaitingList = new System.Windows.Forms.ListBox();
             this.lbl_PrintedNumber = new System.Windows.Forms.Label();
             this.tm_Update = new System.Windows.Forms.Timer(this.components);
             this.btn_Analysis = new System.Windows.Forms.Button();
             this.txb_NOF = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pic_face = new System.Windows.Forms.PictureBox();
             this.lbl_waitingTickets = new System.Windows.Forms.Label();
+            this.lbl_displayTotal = new System.Windows.Forms.Label();
+            this.chk_printEnable = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pic_CompanyPicture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_face)).BeginInit();
             this.SuspendLayout();
             // 
             // pic_CompanyPicture
@@ -165,17 +166,6 @@
             this.lbl_TopBreakLine.TabIndex = 18;
             this.lbl_TopBreakLine.Text = resources.GetString("lbl_TopBreakLine.Text");
             // 
-            // btn_Reset
-            // 
-            this.btn_Reset.Location = new System.Drawing.Point(26, 637);
-            this.btn_Reset.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_Reset.Name = "btn_Reset";
-            this.btn_Reset.Size = new System.Drawing.Size(49, 23);
-            this.btn_Reset.TabIndex = 20;
-            this.btn_Reset.Text = "Reset";
-            this.btn_Reset.UseVisualStyleBackColor = true;
-            this.btn_Reset.Click += new System.EventHandler(this.btn_Reset_Click);
-            // 
             // lbl_BottomBreakLine
             // 
             this.lbl_BottomBreakLine.AutoSize = true;
@@ -193,7 +183,7 @@
             this.WaitingList.FormattingEnabled = true;
             this.WaitingList.Location = new System.Drawing.Point(1292, 185);
             this.WaitingList.Name = "WaitingList";
-            this.WaitingList.Size = new System.Drawing.Size(53, 329);
+            this.WaitingList.Size = new System.Drawing.Size(53, 420);
             this.WaitingList.TabIndex = 22;
             this.WaitingList.SelectedIndexChanged += new System.EventHandler(this.WaitingList_DoubleClick);
             // 
@@ -231,15 +221,15 @@
             this.txb_NOF.Size = new System.Drawing.Size(25, 20);
             this.txb_NOF.TabIndex = 26;
             // 
-            // pictureBox1
+            // pic_face
             // 
-            this.pictureBox1.Image = global::ReceptionScreen.Properties.Resources.Opera_face_Gif3;
-            this.pictureBox1.Location = new System.Drawing.Point(1238, 11);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(99, 125);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 27;
-            this.pictureBox1.TabStop = false;
+            this.pic_face.Image = global::ReceptionScreen.Properties.Resources.Opera_face_Gif3;
+            this.pic_face.Location = new System.Drawing.Point(1238, 11);
+            this.pic_face.Name = "pic_face";
+            this.pic_face.Size = new System.Drawing.Size(99, 125);
+            this.pic_face.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pic_face.TabIndex = 27;
+            this.pic_face.TabStop = false;
             // 
             // lbl_waitingTickets
             // 
@@ -252,20 +242,42 @@
             this.lbl_waitingTickets.TabIndex = 29;
             this.lbl_waitingTickets.Text = "| A : 0 | B : 0 | C : 0 |\r\n            -> Total : 0";
             // 
+            // lbl_displayTotal
+            // 
+            this.lbl_displayTotal.AutoSize = true;
+            this.lbl_displayTotal.Font = new System.Drawing.Font("Monotype Corsiva", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_displayTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.lbl_displayTotal.Location = new System.Drawing.Point(1147, 579);
+            this.lbl_displayTotal.Name = "lbl_displayTotal";
+            this.lbl_displayTotal.Size = new System.Drawing.Size(208, 66);
+            this.lbl_displayTotal.TabIndex = 30;
+            this.lbl_displayTotal.Text = "Total tickets: ???\r\nTotal customers: ???";
+            // 
+            // chk_printEnable
+            // 
+            this.chk_printEnable.AutoSize = true;
+            this.chk_printEnable.Location = new System.Drawing.Point(657, 467);
+            this.chk_printEnable.Name = "chk_printEnable";
+            this.chk_printEnable.Size = new System.Drawing.Size(86, 17);
+            this.chk_printEnable.TabIndex = 31;
+            this.chk_printEnable.Text = "PrintEnabled";
+            this.chk_printEnable.UseVisualStyleBackColor = true;
+            // 
             // ReceptionScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.chk_printEnable);
+            this.Controls.Add(this.lbl_displayTotal);
             this.Controls.Add(this.lbl_waitingTickets);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pic_face);
             this.Controls.Add(this.txb_NOF);
             this.Controls.Add(this.btn_Analysis);
             this.Controls.Add(this.lbl_PrintedNumber);
             this.Controls.Add(this.WaitingList);
             this.Controls.Add(this.lbl_BottomBreakLine);
-            this.Controls.Add(this.btn_Reset);
             this.Controls.Add(this.lbl_TopBreakLine);
             this.Controls.Add(this.lbl_LabelPrintedNum);
             this.Controls.Add(this.lbl_DateTime);
@@ -283,7 +295,7 @@
             this.Load += new System.EventHandler(this.ReceptionScreen_Load);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ReceptionScreen_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.pic_CompanyPicture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_face)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,15 +313,16 @@
         private System.Windows.Forms.Label lbl_DateTime;
         private System.Windows.Forms.Label lbl_LabelPrintedNum;
         private System.Windows.Forms.Label lbl_TopBreakLine;
-        private System.Windows.Forms.Button btn_Reset;
         private System.Windows.Forms.Label lbl_BottomBreakLine;
         private System.Windows.Forms.ListBox WaitingList;
         private System.Windows.Forms.Label lbl_PrintedNumber;
         private System.Windows.Forms.Timer tm_Update;
         private System.Windows.Forms.Button btn_Analysis;
         private System.Windows.Forms.TextBox txb_NOF;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pic_face;
         private System.Windows.Forms.Label lbl_waitingTickets;
+        private System.Windows.Forms.Label lbl_displayTotal;
+        private System.Windows.Forms.CheckBox chk_printEnable;
     }
 }
 
