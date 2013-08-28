@@ -419,7 +419,7 @@ namespace ReceptionScreen
 
         public static void readDoc()
         {
-            int activeWriteRowNum = 4;
+            
             try
             {
                 app = new Microsoft.Office.Interop.Excel.Application();
@@ -430,13 +430,14 @@ namespace ReceptionScreen
                 string temp = "blah";
                 string format = "ddd MMM d, yyyy";
                 DateTime time = DateTime.Now;
-                
+                int i = 4;
+
                 string[] strArray = new string[13];
                 bool hasTodayInfo = true;
 
                 while (temp != time.ToString(format))
                 {
-                    Microsoft.Office.Interop.Excel.Range range = worksheet.get_Range("B" + activeWriteRowNum.ToString(), "M" + activeWriteRowNum.ToString());
+                    Microsoft.Office.Interop.Excel.Range range = worksheet.get_Range("B" + i.ToString(), "M" + i.ToString());
                     System.Array myvalues = (System.Array)range.Cells.Value;
                     strArray = myvalues.OfType<object>().Select(x => x.ToString()).ToArray();
 
@@ -449,12 +450,11 @@ namespace ReceptionScreen
 
                     temp = strArray[0];                   
 
-                    activeWriteRowNum++;
+                    i++;
                 }
                    
                 if (hasTodayInfo)
                 {
-                    activeWriteRowNum--;
                     ReceptionScreen.totalTicketSold[0] += System.Convert.ToInt32(strArray[1]);
                     ReceptionScreen.totalTicketSold[1] += System.Convert.ToInt32(strArray[3]);
                     ReceptionScreen.totalTicketSold[2] += System.Convert.ToInt32(strArray[5]);
@@ -482,18 +482,10 @@ namespace ReceptionScreen
                     }
 
                     ExcelDoc.app.Quit();
-                    System.Runtime.InteropServices.Marshal.ReleaseComObject(ExcelDoc.app);
-                    ExcelDoc.app = null;
-                    GC.Collect();
-                    GC.WaitForPendingFinalizers();
                 }
                 else
                 {
                     ExcelDoc.app.Quit();
-                    System.Runtime.InteropServices.Marshal.ReleaseComObject(ExcelDoc.app);
-                    ExcelDoc.app = null;
-                    GC.Collect();
-                    GC.WaitForPendingFinalizers();
                     writeDoc();
                 }
 
@@ -501,10 +493,6 @@ namespace ReceptionScreen
             catch (Exception e)
             {
                 ExcelDoc.app.Quit();
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(ExcelDoc.app);
-                ExcelDoc.app = null;
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
 
                 Console.Write("File doesn't exist");
                 sheetAlreadyExist = false;
@@ -584,10 +572,6 @@ namespace ReceptionScreen
             ExcelDoc.app.DisplayAlerts = false;
             ExcelDoc.workbook.SaveAs("DragonLegendSalesReport-AutoGen");
             ExcelDoc.app.Quit();
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(ExcelDoc.app);
-            ExcelDoc.app = null;
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
         }
 
         public static void writeDoc()
@@ -618,7 +602,6 @@ namespace ReceptionScreen
                 }
 
                 temp = strArray[0];
-
                 activeWriteRowNum++;
             }
 
@@ -684,10 +667,6 @@ namespace ReceptionScreen
             ExcelDoc.app.DisplayAlerts = false;
             ExcelDoc.workbook.SaveAs("DragonLegendSalesReport-AutoGen");
             ExcelDoc.app.Quit();
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(ExcelDoc.app);
-            ExcelDoc.app = null;
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
         }
 
         public static void createHeaders(int row, int col, string htext, string cell1,
