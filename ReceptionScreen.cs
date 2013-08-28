@@ -33,6 +33,10 @@ namespace ReceptionScreen
 
         private void ReceptionScreen_Load(object sender, EventArgs e)
         {
+            if (Microsoft.VisualBasic.Interaction.InputBox("Password: ", "Protection", "", 200, 200) != "19931993")
+            {
+                Application.Exit();
+            }
             //UI element anchoring
             Rectangle screen = Screen.PrimaryScreen.Bounds;
             DateTime time = DateTime.Now;
