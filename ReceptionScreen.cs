@@ -83,6 +83,11 @@ namespace ReceptionScreen
 
             btn_Analysis.Left = screen.Width/100;
             btn_Analysis.Top = screen.Height - btn_Analysis.Height*4 - screen.Height/100;
+
+            btn_Save.Left = btn_Analysis.Left + btn_Analysis.Width + screen.Width/100;
+            btn_Save.Top = btn_Analysis.Top;
+            btn_Save.Hide();
+
             lbl_LabelPrintedNum.Top = lbl_LabelPrintTicket.Top + screen.Height/12;
             lbl_LabelPrintedNum.Left = lbl_LabelPrintTicket.Left;
             lbl_PrintedNumber.Top = lbl_LabelPrintedNum.Top;
@@ -183,6 +188,16 @@ namespace ReceptionScreen
             {
                 btn_Analysis.Hide();
             }
+
+            if (btn_Save.Bounds.Contains(e.Location) && !btn_Save.Visible)
+            {
+                btn_Save.Show();
+            }
+            else
+            {
+                btn_Save.Hide();
+            }
+
             if (WaitingList.Bounds.Contains(e.Location) && !WaitingList.Visible && _waitingListShow)
             {
                 WaitingList.Show();
@@ -379,6 +394,11 @@ Total number of tickets sold: {0}   Total number customers: {1}
             }
             _oldTimeRange = _timeRange;
         }
+
+        private void btn_Save_Click(object sender, EventArgs e)
+        {
+            ExcelDoc.WriteDoc();
+        }
     }
 
     public class ExcelDoc
@@ -396,7 +416,7 @@ Total number of tickets sold: {0}   Total number customers: {1}
             try
             {
                 App = new Microsoft.Office.Interop.Excel.Application {Visible = true};
-                Workbook = App.Workbooks.Open("DragonLegendSalesReport-AutoGen");
+                Workbook = App.Workbooks.Open("DragonLegendSalesReport-AutoGen", Type.Missing, true, Type.Missing, "19931993");
                 Worksheet = (Microsoft.Office.Interop.Excel.Worksheet) Workbook.Sheets[1];
 
                 var temp = "blah";
@@ -539,7 +559,7 @@ Total number of tickets sold: {0}   Total number customers: {1}
             AddData(4, 13, total.ToString(), "M4", "M4", "#,##0");
 
             App.DisplayAlerts = false;
-            Workbook.SaveAs("DragonLegendSalesReport-AutoGen");
+            Workbook.SaveAs("DragonLegendSalesReport-AutoGen",Type.Missing,"19931993",Type.Missing,true);
             App.Quit();
         }
 
@@ -547,7 +567,7 @@ Total number of tickets sold: {0}   Total number customers: {1}
         {
             var activeWriteRowNum = 4;
             App = new Microsoft.Office.Interop.Excel.Application {Visible = true};
-            Workbook = App.Workbooks.Open("DragonLegendSalesReport-AutoGen");
+            Workbook = App.Workbooks.Open("DragonLegendSalesReport-AutoGen", Type.Missing, false, Type.Missing, "19931993", Type.Missing,true);
             Worksheet = (Microsoft.Office.Interop.Excel.Worksheet) Workbook.Sheets[1];
 
             var temp = "blah";
@@ -653,7 +673,7 @@ Total number of tickets sold: {0}   Total number customers: {1}
             AddData(activeWriteRowNum, 13, total.ToString(), "M" + activeWriteRowNum, "M" + activeWriteRowNum, "#,##0");
 
             App.DisplayAlerts = false;
-            Workbook.SaveAs("DragonLegendSalesReport-AutoGen");
+            Workbook.SaveAs("DragonLegendSalesReport-AutoGen", Type.Missing, "19931993", Type.Missing, true);
             App.Quit();
         }
 

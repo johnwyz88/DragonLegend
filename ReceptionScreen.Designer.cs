@@ -52,6 +52,7 @@ namespace ReceptionScreen
             this.lbl_waitingTickets = new System.Windows.Forms.Label();
             this.lbl_displayTotal = new System.Windows.Forms.Label();
             this.chk_printEnable = new System.Windows.Forms.CheckBox();
+            this.btn_Save = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pic_CompanyPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_face)).BeginInit();
             this.SuspendLayout();
@@ -265,12 +266,23 @@ namespace ReceptionScreen
             this.chk_printEnable.Text = "PrintEnabled";
             this.chk_printEnable.UseVisualStyleBackColor = true;
             // 
+            // btn_Save
+            // 
+            this.btn_Save.Location = new System.Drawing.Point(179, 637);
+            this.btn_Save.Name = "btn_Save";
+            this.btn_Save.Size = new System.Drawing.Size(47, 23);
+            this.btn_Save.TabIndex = 32;
+            this.btn_Save.Text = "Save";
+            this.btn_Save.UseVisualStyleBackColor = true;
+            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
+            // 
             // ReceptionScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.btn_Save);
             this.Controls.Add(this.chk_printEnable);
             this.Controls.Add(this.lbl_displayTotal);
             this.Controls.Add(this.lbl_waitingTickets);
@@ -325,6 +337,7 @@ namespace ReceptionScreen
         private System.Windows.Forms.Label lbl_waitingTickets;
         private System.Windows.Forms.Label lbl_displayTotal;
         private System.Windows.Forms.CheckBox chk_printEnable;
+        private System.Windows.Forms.Button btn_Save;
     }
 }
 
