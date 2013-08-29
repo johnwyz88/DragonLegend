@@ -100,7 +100,7 @@ namespace ReceptionScreen
             lbl_waitingTickets.Left = screen.Width - lbl_waitingTickets.Width - screen.Width/100;
 
             lbl_displayTotal.Top = lbl_waitingTickets.Top + lbl_waitingTickets.Height + screen.Height/100;
-            lbl_displayTotal.Left = screen.Width - lbl_waitingTickets.Width - screen.Width/100;
+            lbl_displayTotal.Left = screen.Width - lbl_waitingTickets.Width - screen.Width/50;
             lbl_displayTotal.Hide();
 
             txb_NOF.Focus();
@@ -375,15 +375,7 @@ Total number of tickets sold: {0}   Total number customers: {1}
 
             if (_oldTimeRange == 3 && _timeRange == 0)
             {
-                //Store Data
-
-                //Read/Reset Data
-
-                //Reset tickets
-                TotalTicketSold[0] = 0;
-                TotalTicketSold[1] = 0;
-                TotalTicketSold[2] = 0;
-                TotalTicketSold[3] = 0;
+                Application.Restart();
             }
             _oldTimeRange = _timeRange;
         }
