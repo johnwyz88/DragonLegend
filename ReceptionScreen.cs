@@ -25,6 +25,7 @@ namespace ReceptionScreen
         private static int _typeA, _typeB, _typeC;
         private static int _timeRange;
         private static int _oldTimeRange = -1;
+        private static int saveCount = 0;
 
         public ReceptionScreen()
         {
@@ -393,6 +394,13 @@ Total number of tickets sold: {0}   Total number customers: {1}
                 Application.Restart();
             }
             _oldTimeRange = _timeRange;
+
+            saveCount++;
+            if (saveCount >= 600000)
+            {
+                ExcelDoc.WriteDoc();
+                saveCount = 0;
+            }
         }
 
         private void btn_Save_Click(object sender, EventArgs e)
