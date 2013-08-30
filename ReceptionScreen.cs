@@ -61,12 +61,12 @@ namespace ReceptionScreen
             lbl_TopBreakLine.Left = 0;
             lbl_TopBreakLine.Top = screen.Height/20 + pic_CompanyPicture.Height;
 
-            lbl_NextTicket.Left = screen.Width/2 - lbl_NextTicket.Width/2 + screen.Width/20;
-            lbl_NextTicket.Top = lbl_TopBreakLine.Top + screen.Height/10;
-
-            lbl_LabelNextTicket.Left = screen.Width/7 - lbl_LabelNextTicket.Width/7;
-            lbl_LabelNextTicket.Top = lbl_NextTicket.Top + lbl_NextTicket.Height - lbl_LabelNextTicket.Height*2 -
-                                      screen.Height/60;
+            lbl_NextTicket.Left = screen.Width/10;
+            lbl_NextTicket.Top = lbl_TopBreakLine.Top + screen.Height/30;
+            lbl_NextTicket.Font = new Font(lbl_NextTicket.Font.Name, screen.Width / 7);
+            
+            lbl_LabelNextTicket.Left = 0;
+            lbl_LabelNextTicket.Top = lbl_NextTicket.Top + lbl_NextTicket.Height * 3 / 5;
 
             lbl_LabelPrintTicket.Left = lbl_LabelNextTicket.Left;
             lbl_LabelPrintTicket.Top = lbl_LabelNextTicket.Top + lbl_LabelNextTicket.Height + screen.Height/7;
@@ -256,7 +256,8 @@ Total number of tickets sold: {0}   Total number customers: {1}
             else
             {
                 lbl_NextTicket.Text = _nextTicketText;
-                lbl_NextTicket.Font = new Font(lbl_NextTicket.Font.FontFamily.Name, 140);
+                Rectangle screen = Screen.PrimaryScreen.Bounds;
+                lbl_NextTicket.Font = new Font(lbl_NextTicket.Font.Name, screen.Width / 7);
                 _nextTicketShow = true;
                 _waitingListShow = true;
             }

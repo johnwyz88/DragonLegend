@@ -132,9 +132,9 @@ namespace ReceptionScreen
             this.lbl_LabelPrintTicket.Location = new System.Drawing.Point(188, 465);
             this.lbl_LabelPrintTicket.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_LabelPrintTicket.Name = "lbl_LabelPrintTicket";
-            this.lbl_LabelPrintTicket.Size = new System.Drawing.Size(211, 19);
+            this.lbl_LabelPrintTicket.Size = new System.Drawing.Size(193, 19);
             this.lbl_LabelPrintTicket.TabIndex = 14;
-            this.lbl_LabelPrintTicket.Text = "Number of People    -->";
+            this.lbl_LabelPrintTicket.Text = "Number of People -->";
             // 
             // lbl_DateTime
             // 
