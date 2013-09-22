@@ -161,9 +161,10 @@ namespace ReceptionScreen
 
         private void btn_Analysis_Click(object sender, EventArgs e)
         {
-            if (_nextTicketShow)
+            if (_nextTicketShow && _waitingListShow)
             {
                 _waitingListShow = false;
+                WaitingList.Hide();
 
                 int entireDayTicket = TotalTicketSold[0] + TotalTicketSold[1] + TotalTicketSold[2] + TotalTicketSold[3];
                 int entireDayCus = TotalCutomers[0] + TotalCutomers[1] + TotalCutomers[2] + TotalCutomers[3];
@@ -188,6 +189,7 @@ Total number of tickets sold: {0}   Total number customers: {1}
                 lbl_NextTicket.Font = new Font(lbl_NextTicket.Font.Name, screen.Width / 7);
                 _nextTicketShow = true;
                 _waitingListShow = true;
+                WaitingList.Show();
             }
         }
 
