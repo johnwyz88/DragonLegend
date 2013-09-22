@@ -17,7 +17,6 @@ namespace ReceptionScreen
         private int _nop;
         private string _printedTicketText = "A000-0";
         private readonly ArrayList _arrayList = new ArrayList();
-        private bool _parsable = true;
         public static int[] TotalCutomers = new int[4];
         private Font _printFont;
         private static DateTime _time = DateTime.Now;
@@ -49,7 +48,6 @@ namespace ReceptionScreen
             DateTime time = DateTime.Now;
             const string format = "ddd MMM d HH:mm yyyy";
             _waitingListShow = true;
-            WaitingList.Hide();
             _nextTicketShow = true;
             lbl_DateTime.Text = time.ToString(format);
             lbl_CompanyName.Left = screen.Width/2 - lbl_CompanyName.Width/2 + screen.Width/20;
@@ -71,13 +69,13 @@ namespace ReceptionScreen
             lbl_LabelPrintTicket.Left = lbl_LabelNextTicket.Left;
             lbl_LabelPrintTicket.Top = lbl_LabelNextTicket.Top + lbl_LabelNextTicket.Height + screen.Height/7;
 
-            txb_NOF.Left = lbl_NextTicket.Left + screen.Width/20;
-            txb_NOF.Top = lbl_LabelPrintTicket.Top;
+            btn_CreateTicket.Left = lbl_NextTicket.Left + screen.Width / 20;
+            btn_CreateTicket.Top = lbl_LabelPrintTicket.Top;
 
-            btn_CreateTicket.Left = txb_NOF.Left + txb_NOF.Width + screen.Width/100;
-            btn_CreateTicket.Top = txb_NOF.Top;
+            People.Left = btn_CreateTicket.Left + btn_CreateTicket.Width + screen.Width / 80;
+            People.Top = btn_CreateTicket.Top;
 
-            chk_printEnable.Left = btn_CreateTicket.Left + btn_CreateTicket.Width + screen.Width/100;
+            chk_printEnable.Left = People.Left + People.Width + screen.Width / 100;
             chk_printEnable.Top = btn_CreateTicket.Top + screen.Height/300;
 
             chk_printEnable.Hide();
@@ -93,12 +91,12 @@ namespace ReceptionScreen
             lbl_LabelPrintedNum.Left = lbl_LabelPrintTicket.Left;
             lbl_PrintedNumber.Top = lbl_LabelPrintedNum.Top;
 
-            lbl_PrintedNumber.Left = txb_NOF.Left;
+            lbl_PrintedNumber.Left = btn_CreateTicket.Left;
             lbl_BottomBreakLine.Top = lbl_PrintedNumber.Top + lbl_PrintedNumber.Height + screen.Height/30;
             lbl_ContactInfo.Top = btn_Analysis.Top;
             lbl_ContactInfo.Left = screen.Width/2 - lbl_ContactInfo.Width/2;
             WaitingList.Height = screen.Height*2/5;
-            WaitingList.Left = screen.Width - WaitingList.Width - screen.Width/50;
+            WaitingList.Left = screen.Width - WaitingList.Width - screen.Width/200;
             WaitingList.Top = lbl_TopBreakLine.Top + lbl_TopBreakLine.Height + screen.Height/100;
             lbl_DateTime.Left = screen.Width - lbl_DateTime.Width - screen.Width/100;
             lbl_DateTime.Top = btn_Analysis.Top;
@@ -109,74 +107,13 @@ namespace ReceptionScreen
             lbl_displayTotal.Left = screen.Width - lbl_waitingTickets.Width - screen.Width/50;
             lbl_displayTotal.Hide();
 
-            txb_NOF.Focus();
             btn_Analysis.Visible = false;
             ExcelDoc.ReadDoc();
         }
 
         private void btn_CreateTicket_Click(object sender, EventArgs e)
         {
-            if (txb_NOF.Text == null)
-            {
-                txb_NOF.BackColor = Color.Red;
-                return;
-            }
-            try
-            {
-                _nop = int.Parse(txb_NOF.Text);
-            }
-            catch
-            {
-                txb_NOF.BackColor = Color.Red;
-                _parsable = false;
-            }
-            if (_parsable && _nop > 0 && _nop < 100)
-            {
-                txb_NOF.BackColor = Color.White;
-                txb_NOF.Clear();
-                TotalTicketSold[_timeRange]++;
-                TotalCutomers[_timeRange] += _nop;
-
-                char type = 'A';
-                if (_nop > 0 && _nop <= 5)
-                {
-                    type = 'A';
-                    _typeA++;
-                }
-                else if (_nop > 5 && _nop <= 10)
-                {
-                    type = 'B';
-                    _typeB++;
-                }
-                else if (_nop > 10)
-                {
-                    type = 'C';
-                    _typeC++;
-                }
-
-                int totalTicketSoldOfDay = TotalTicketSold[0] + TotalTicketSold[1] + TotalTicketSold[2] +
-                                           TotalTicketSold[3];
-                _printedTicketText = string.Format("{0}{1:D3}-{2}", type, totalTicketSoldOfDay, _nop);
-                lbl_PrintedNumber.Text = _printedTicketText;
-
-                _arrayList.Add(_printedTicketText);
-                WaitingList.Items.Clear();
-                WaitingList.Items.AddRange(_arrayList.ToArray());
-                lbl_waitingTickets.Text = string.Format(
-                    "| A : {0} | B : {1} | C : {2} |\r\n            -> Total : {3}", _typeA, _typeB, _typeC,
-                    _arrayList.ToArray().Length);
-
-                if (chk_printEnable.Checked)
-                {
-                    var pd = new PrintDocument();
-                    pd.PrintPage += PrintTicket;
-                    pd.Print();
-                }
-            }
-            else
-                txb_NOF.BackColor = Color.Red;
-            _parsable = true;
-            txb_NOF.Focus();
+            People.Visible = true;
         }
 
         private void ReceptionScreen_MouseMove(object sender, MouseEventArgs e)
@@ -197,15 +134,6 @@ namespace ReceptionScreen
             else
             {
                 btn_Save.Hide();
-            }
-
-            if (WaitingList.Bounds.Contains(e.Location) && !WaitingList.Visible && _waitingListShow)
-            {
-                WaitingList.Show();
-            }
-            else
-            {
-                WaitingList.Hide();
             }
 
             if (chk_printEnable.Bounds.Contains(e.Location) && !chk_printEnable.Visible)
@@ -263,6 +191,61 @@ Total number of tickets sold: {0}   Total number customers: {1}
             }
         }
 
+        private void People_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (People.SelectedItem != null)
+            {
+                DialogResult dialogResult = MessageBox.Show(@"Total customers: " + People.SelectedItem,
+                                                            @"Are you sure?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    _nop = Convert.ToInt32(People.SelectedItem);
+                    if (_nop > 0 && _nop < 100)
+                    {
+                        TotalTicketSold[_timeRange]++;
+                        TotalCutomers[_timeRange] += _nop;
+
+                        char type = 'A';
+                        if (_nop > 0 && _nop <= 5)
+                        {
+                            type = 'A';
+                            _typeA++;
+                        }
+                        else if (_nop > 5 && _nop <= 10)
+                        {
+                            type = 'B';
+                            _typeB++;
+                        }
+                        else if (_nop > 10)
+                        {
+                            type = 'C';
+                            _typeC++;
+                        }
+
+                        int totalTicketSoldOfDay = TotalTicketSold[0] + TotalTicketSold[1] + TotalTicketSold[2] +
+                                                   TotalTicketSold[3];
+                        _printedTicketText = string.Format("{0}{1:D3}-{2}", type, totalTicketSoldOfDay, _nop);
+                        lbl_PrintedNumber.Text = _printedTicketText;
+
+                        _arrayList.Add(_printedTicketText);
+                        WaitingList.Items.Clear();
+                        WaitingList.Items.AddRange(_arrayList.ToArray());
+                        lbl_waitingTickets.Text = string.Format(
+                            "| A : {0} | B : {1} | C : {2} |\r\n            -> Total : {3}", _typeA, _typeB, _typeC,
+                            _arrayList.ToArray().Length);
+
+                        if (chk_printEnable.Checked)
+                        {
+                            var pd = new PrintDocument();
+                            pd.PrintPage += PrintTicket;
+                            pd.Print();
+                        }
+                    }
+                    People.Hide();
+                }
+            }
+        }
+
         private void WaitingList_DoubleClick(object sender, EventArgs e)
         {
             if (WaitingList.SelectedItem != null)
@@ -293,10 +276,6 @@ Total number of tickets sold: {0}   Total number customers: {1}
 
                     lbl_waitingTickets.Text = string.Format("| A : {0} | B : {1} | C : {2} |\r\nTotal : {3}", _typeA,
                                                             _typeB, _typeC, _arrayList.ToArray().Length);
-                }
-                else if (dialogResult == DialogResult.No)
-                {
-                    txb_NOF.Focus();
                 }
             }
         }
@@ -370,7 +349,6 @@ Total number of tickets sold: {0}   Total number customers: {1}
             DateTime time = DateTime.Now;
             const string format = "ddd MMM d HH:mm yyyy";
             lbl_DateTime.Text = time.ToString(format);
-            txb_NOF.Focus();
             int hour = time.Hour;
 
             if (hour >= 0 && hour < 9)

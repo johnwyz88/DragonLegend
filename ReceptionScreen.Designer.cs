@@ -47,12 +47,12 @@ namespace ReceptionScreen
             this.lbl_PrintedNumber = new System.Windows.Forms.Label();
             this.tm_Update = new System.Windows.Forms.Timer(this.components);
             this.btn_Analysis = new System.Windows.Forms.Button();
-            this.txb_NOF = new System.Windows.Forms.TextBox();
             this.pic_face = new System.Windows.Forms.PictureBox();
             this.lbl_waitingTickets = new System.Windows.Forms.Label();
             this.lbl_displayTotal = new System.Windows.Forms.Label();
             this.chk_printEnable = new System.Windows.Forms.CheckBox();
             this.btn_Save = new System.Windows.Forms.Button();
+            this.People = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pic_CompanyPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_face)).BeginInit();
             this.SuspendLayout();
@@ -82,7 +82,7 @@ namespace ReceptionScreen
             // 
             // btn_CreateTicket
             // 
-            this.btn_CreateTicket.Location = new System.Drawing.Point(550, 465);
+            this.btn_CreateTicket.Location = new System.Drawing.Point(478, 467);
             this.btn_CreateTicket.Margin = new System.Windows.Forms.Padding(2);
             this.btn_CreateTicket.Name = "btn_CreateTicket";
             this.btn_CreateTicket.Size = new System.Drawing.Size(78, 22);
@@ -132,9 +132,9 @@ namespace ReceptionScreen
             this.lbl_LabelPrintTicket.Location = new System.Drawing.Point(188, 465);
             this.lbl_LabelPrintTicket.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_LabelPrintTicket.Name = "lbl_LabelPrintTicket";
-            this.lbl_LabelPrintTicket.Size = new System.Drawing.Size(193, 19);
+            this.lbl_LabelPrintTicket.Size = new System.Drawing.Size(186, 19);
             this.lbl_LabelPrintTicket.TabIndex = 14;
-            this.lbl_LabelPrintTicket.Text = "Number of People -->";
+            this.lbl_LabelPrintTicket.Text = "Generate Tickets -->";
             // 
             // lbl_DateTime
             // 
@@ -217,13 +217,6 @@ namespace ReceptionScreen
             this.btn_Analysis.UseVisualStyleBackColor = true;
             this.btn_Analysis.Click += new System.EventHandler(this.btn_Analysis_Click);
             // 
-            // txb_NOF
-            // 
-            this.txb_NOF.Location = new System.Drawing.Point(488, 466);
-            this.txb_NOF.Name = "txb_NOF";
-            this.txb_NOF.Size = new System.Drawing.Size(25, 20);
-            this.txb_NOF.TabIndex = 26;
-            // 
             // pic_face
             // 
             this.pic_face.Image = global::ReceptionScreen.Properties.Resources.Opera_face_Gif3;
@@ -276,18 +269,59 @@ namespace ReceptionScreen
             this.btn_Save.UseVisualStyleBackColor = true;
             this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
             // 
+            // People
+            // 
+            this.People.FormattingEnabled = true;
+            this.People.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30"});
+            this.People.Location = new System.Drawing.Point(577, 394);
+            this.People.Name = "People";
+            this.People.Size = new System.Drawing.Size(43, 95);
+            this.People.TabIndex = 33;
+            this.People.Visible = false;
+            this.People.SelectedIndexChanged += new System.EventHandler(this.People_SelectedIndexChanged);
+            // 
             // ReceptionScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.People);
             this.Controls.Add(this.btn_Save);
             this.Controls.Add(this.chk_printEnable);
             this.Controls.Add(this.lbl_displayTotal);
             this.Controls.Add(this.lbl_waitingTickets);
             this.Controls.Add(this.pic_face);
-            this.Controls.Add(this.txb_NOF);
             this.Controls.Add(this.btn_Analysis);
             this.Controls.Add(this.lbl_PrintedNumber);
             this.Controls.Add(this.WaitingList);
@@ -332,12 +366,12 @@ namespace ReceptionScreen
         private System.Windows.Forms.Label lbl_PrintedNumber;
         private System.Windows.Forms.Timer tm_Update;
         private System.Windows.Forms.Button btn_Analysis;
-        private System.Windows.Forms.TextBox txb_NOF;
         private System.Windows.Forms.PictureBox pic_face;
         private System.Windows.Forms.Label lbl_waitingTickets;
         private System.Windows.Forms.Label lbl_displayTotal;
         private System.Windows.Forms.CheckBox chk_printEnable;
         private System.Windows.Forms.Button btn_Save;
+        private System.Windows.Forms.ListBox People;
     }
 }
 
