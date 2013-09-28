@@ -59,7 +59,7 @@ namespace ReceptionScreen
             lbl_TopBreakLine.Left = 0;
             lbl_TopBreakLine.Top = screen.Height/20 + pic_CompanyPicture.Height;
 
-            lbl_NextTicket.Left = screen.Width/10;
+            lbl_NextTicket.Left = screen.Width/7;
             lbl_NextTicket.Top = lbl_TopBreakLine.Top + screen.Height/30;
             lbl_NextTicket.Font = new Font(lbl_NextTicket.Font.Name, screen.Width / 7);
             
@@ -96,7 +96,7 @@ namespace ReceptionScreen
             lbl_ContactInfo.Top = btn_Analysis.Top;
             lbl_ContactInfo.Left = screen.Width/2 - lbl_ContactInfo.Width/2;
             WaitingList.Height = screen.Height*2/5;
-            WaitingList.Left = screen.Width - WaitingList.Width - screen.Width/200;
+            WaitingList.Left = screen.Width - WaitingList.Width - screen.Width/50;
             WaitingList.Top = lbl_TopBreakLine.Top + lbl_TopBreakLine.Height + screen.Height/100;
             lbl_DateTime.Left = screen.Width - lbl_DateTime.Width - screen.Width/100;
             lbl_DateTime.Top = btn_Analysis.Top;
