@@ -185,8 +185,7 @@ Total number of tickets sold: {0}   Total number customers: {1}
             else
             {
                 lbl_NextTicket.Text = _nextTicketText;
-                Rectangle screen = Screen.PrimaryScreen.Bounds;
-                lbl_NextTicket.Font = new Font(lbl_NextTicket.Font.Name, screen.Width / 7);
+                lbl_NextTicket.Font = new Font(lbl_NextTicket.Font.FontFamily.Name, 140);
                 _nextTicketShow = true;
                 _waitingListShow = true;
                 WaitingList.Show();
