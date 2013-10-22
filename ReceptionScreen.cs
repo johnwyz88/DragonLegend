@@ -12,10 +12,10 @@ namespace ReceptionScreen
     {
         private bool _waitingListShow = true;
         private bool _nextTicketShow = true;
-        private string _nextTicketText = "A000-0";
+        private string _nextTicketText = "A00-0";
         public static int[] TotalTicketSold = new int[4];
         private int _nop;
-        private string _printedTicketText = "A000-0";
+        private string _printedTicketText = "A00-0";
         private readonly ArrayList _arrayList = new ArrayList();
         public static int[] TotalCutomers = new int[4];
         private Font _printFont;
@@ -59,18 +59,40 @@ namespace ReceptionScreen
             lbl_TopBreakLine.Left = 0;
             lbl_TopBreakLine.Top = screen.Height/20 + pic_CompanyPicture.Height;
 
-            lbl_NextTicket.Left = screen.Width/7;
-            lbl_NextTicket.Top = lbl_TopBreakLine.Top + screen.Height/30;
-            lbl_NextTicket.Font = new Font(lbl_NextTicket.Font.Name, screen.Width / 7);
             
+            lbl_NextTicket.Top = lbl_TopBreakLine.Top + screen.Height/30;
+            lbl_NextTicket.Font = new Font(lbl_NextTicket.Font.Name, int.Parse(txt_size.Text));
+
+            txt_size.Hide();
+
+            btn_Analysis.Left = screen.Width / 100;
+            btn_Analysis.Top = screen.Height - btn_Analysis.Height * 4 - screen.Height / 100;
+
+            lbl_BottomBreakLine.Top = btn_Analysis.Top - lbl_BottomBreakLine.Height * 2;
+
+            btn_Save.Left = btn_Analysis.Left + btn_Analysis.Width + screen.Width / 100;
+            btn_Save.Top = btn_Analysis.Top;
+            btn_Save.Hide();
+
+            txt_size.Top = btn_Save.Top;
+            txt_size.Left = btn_Save.Left + btn_Save.Width + screen.Width / 100;
+
+            lbl_LabelPrintedNum.Top = lbl_BottomBreakLine.Top - lbl_LabelPrintedNum.Height - screen.Height / 50;        
+
             lbl_LabelNextTicket.Left = 0;
             lbl_LabelNextTicket.Top = lbl_NextTicket.Top + lbl_NextTicket.Height * 3 / 5;
 
+            lbl_NextTicket.Left = lbl_LabelNextTicket.Left + lbl_LabelNextTicket.Width + screen.Width / 50;
+
             lbl_LabelPrintTicket.Left = lbl_LabelNextTicket.Left;
-            lbl_LabelPrintTicket.Top = lbl_LabelNextTicket.Top + lbl_LabelNextTicket.Height + screen.Height/7;
+            lbl_LabelPrintTicket.Top = lbl_LabelPrintedNum.Top - lbl_LabelPrintTicket.Height - screen.Height / 50;
 
             btn_CreateTicket.Left = lbl_NextTicket.Left + screen.Width / 20;
             btn_CreateTicket.Top = lbl_LabelPrintTicket.Top;
+
+            lbl_LabelPrintedNum.Left = lbl_LabelPrintTicket.Left;
+            lbl_PrintedNumber.Top = lbl_LabelPrintedNum.Top;
+            lbl_PrintedNumber.Left = btn_CreateTicket.Left;
 
             People.Left = btn_CreateTicket.Left + btn_CreateTicket.Width + screen.Width / 80;
             People.Top = btn_CreateTicket.Top;
@@ -80,19 +102,6 @@ namespace ReceptionScreen
 
             chk_printEnable.Hide();
 
-            btn_Analysis.Left = screen.Width/100;
-            btn_Analysis.Top = screen.Height - btn_Analysis.Height*4 - screen.Height/100;
-
-            btn_Save.Left = btn_Analysis.Left + btn_Analysis.Width + screen.Width/100;
-            btn_Save.Top = btn_Analysis.Top;
-            btn_Save.Hide();
-
-            lbl_LabelPrintedNum.Top = lbl_LabelPrintTicket.Top + screen.Height/12;
-            lbl_LabelPrintedNum.Left = lbl_LabelPrintTicket.Left;
-            lbl_PrintedNumber.Top = lbl_LabelPrintedNum.Top;
-
-            lbl_PrintedNumber.Left = btn_CreateTicket.Left;
-            lbl_BottomBreakLine.Top = lbl_PrintedNumber.Top + lbl_PrintedNumber.Height + screen.Height/30;
             lbl_ContactInfo.Top = btn_Analysis.Top;
             lbl_ContactInfo.Left = screen.Width/2 - lbl_ContactInfo.Width/2;
             WaitingList.Height = screen.Height*2/5;
@@ -134,6 +143,15 @@ namespace ReceptionScreen
             else
             {
                 btn_Save.Hide();
+            }
+
+            if (txt_size.Bounds.Contains(e.Location) && !txt_size.Visible)
+            {
+                txt_size.Show();
+            }
+            else
+            {
+                txt_size.Hide();
             }
 
             if (chk_printEnable.Bounds.Contains(e.Location) && !chk_printEnable.Visible)
@@ -185,7 +203,7 @@ Total number of tickets sold: {0}   Total number customers: {1}
             else
             {
                 lbl_NextTicket.Text = _nextTicketText;
-                lbl_NextTicket.Font = new Font(lbl_NextTicket.Font.FontFamily.Name, 140);
+                lbl_NextTicket.Font = new Font(lbl_NextTicket.Font.Name, int.Parse(txt_size.Text));
                 _nextTicketShow = true;
                 _waitingListShow = true;
                 WaitingList.Show();
@@ -225,7 +243,7 @@ Total number of tickets sold: {0}   Total number customers: {1}
 
                         int totalTicketSoldOfDay = TotalTicketSold[0] + TotalTicketSold[1] + TotalTicketSold[2] +
                                                    TotalTicketSold[3];
-                        _printedTicketText = string.Format("{0}{1:D3}-{2}", type, totalTicketSoldOfDay, _nop);
+                        _printedTicketText = string.Format("{0}{1:D2}-{2}", type, totalTicketSoldOfDay, _nop);
                         lbl_PrintedNumber.Text = _printedTicketText;
 
                         _arrayList.Add(_printedTicketText);
@@ -293,7 +311,7 @@ Total number of tickets sold: {0}   Total number customers: {1}
                 {
                     "\r\n",
                     "                 www.dragonlegend.ca",
-                    "                      905-940-1133",
+                    "                      905-940-1811",
                     "     25 Lanark Rd. Markham, ON, L3R 8E8",
                     "====================================",
                     "\r\n",
@@ -311,8 +329,8 @@ Total number of tickets sold: {0}   Total number customers: {1}
 
             var count = 0;
             var count2 = 0;
-            float leftMargin = ev.MarginBounds.Left;
-            float topMargin = ev.MarginBounds.Top;
+            float leftMargin = 20;
+            float topMargin = 20;
             _printFont = new Font("Arial", 8);
             string line;
 
@@ -328,10 +346,12 @@ Total number of tickets sold: {0}   Total number customers: {1}
                                           _printFont.GetHeight(ev.Graphics));
                 var parts = line.Split('-');
                 parts[0] = parts[0].Trim();
-                if (parts[0].Length == 4 && (parts[0].Contains('A') || parts[0].Contains('B') || parts[0].Contains('C')))
+                if (parts[0].Length == 3 && (parts[0].Contains('A') || parts[0].Contains('B') || parts[0].Contains('C')))
                 {
                     _printFont = new Font("Arial", 40);
                     if (parts[1].Length == 1)
+                        line = "  " + line;
+                    else
                         line = " " + line;
                 }
                 ev.Graphics.DrawString(line, _printFont, Brushes.Black,
@@ -386,6 +406,7 @@ Total number of tickets sold: {0}   Total number customers: {1}
         private void btn_Save_Click(object sender, EventArgs e)
         {
             ExcelDoc.WriteDoc();
+            lbl_NextTicket.Font = new Font(lbl_NextTicket.Font.Name, int.Parse(txt_size.Text));
         }
     }
 

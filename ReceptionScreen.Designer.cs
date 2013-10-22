@@ -53,6 +53,7 @@ namespace ReceptionScreen
             this.chk_printEnable = new System.Windows.Forms.CheckBox();
             this.btn_Save = new System.Windows.Forms.Button();
             this.People = new System.Windows.Forms.ListBox();
+            this.txt_size = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pic_CompanyPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_face)).BeginInit();
             this.SuspendLayout();
@@ -99,9 +100,9 @@ namespace ReceptionScreen
             this.lbl_NextTicket.Location = new System.Drawing.Point(439, 156);
             this.lbl_NextTicket.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_NextTicket.Name = "lbl_NextTicket";
-            this.lbl_NextTicket.Size = new System.Drawing.Size(792, 229);
+            this.lbl_NextTicket.Size = new System.Drawing.Size(672, 229);
             this.lbl_NextTicket.TabIndex = 11;
-            this.lbl_NextTicket.Text = "A000-0";
+            this.lbl_NextTicket.Text = "A00-0";
             // 
             // lbl_ContactInfo
             // 
@@ -310,12 +311,21 @@ namespace ReceptionScreen
             this.People.Visible = false;
             this.People.SelectedIndexChanged += new System.EventHandler(this.People_SelectedIndexChanged);
             // 
+            // txt_size
+            // 
+            this.txt_size.Location = new System.Drawing.Point(258, 639);
+            this.txt_size.Name = "txt_size";
+            this.txt_size.Size = new System.Drawing.Size(39, 20);
+            this.txt_size.TabIndex = 34;
+            this.txt_size.Text = "200";
+            // 
             // ReceptionScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.txt_size);
             this.Controls.Add(this.People);
             this.Controls.Add(this.btn_Save);
             this.Controls.Add(this.chk_printEnable);
@@ -372,6 +382,7 @@ namespace ReceptionScreen
         private System.Windows.Forms.CheckBox chk_printEnable;
         private System.Windows.Forms.Button btn_Save;
         private System.Windows.Forms.ListBox People;
+        private System.Windows.Forms.TextBox txt_size;
     }
 }
 
